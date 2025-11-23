@@ -477,7 +477,7 @@ export default function HomePage() {
               {/* Maskottchen rechts */}
               <div className="w-28 sm:w-40 md:w-56 lg:w-64 md:order-2">
                 <Image
-                  src="/mn/cta-point-left-cloth.png"
+                  src="/mn/cta-point-left-cloth.webp"
                   alt="Jetzt Angebot anfordern bei MN GLANZWERK"
                   width={260}
                   height={260}
