@@ -202,7 +202,7 @@ export default function ContactForm() {
   {/* Desktop: Figur schwebt oben rechts */}
   <div className="pointer-events-none absolute -top-10 -right-3 hidden md:block">
     <Image
-      src="/mn/contact-support.webP"   // <- dein webP (transparent)
+      src="/mn/contact-support.webp"   // <- dein webP (transparent)
       alt="MN Glanzwerk – Kontakt"
       width={320}
       height={320}
