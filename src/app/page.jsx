@@ -229,7 +229,7 @@ export default function HomePage() {
                 {/* Maskottchen: Arme verschränkt */}
                 <div className="w-28 sm:w-40 md:w-56 lg:w-64">
                   <Image
-                    src="/mn/hero-crossed-arms.png"
+                    src="/mn/hero-crossed-arms.webP"
                     alt="Reinigungsexperte von MN GLANZWERK"
                     width={260}
                     height={260}
@@ -315,7 +315,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 rounded-full bg-white/15 blur-2xl" />
                       <div className="absolute inset-3 rounded-full border border-white/30" />
                       <Image
-                        src="/mn/services-mop.png"
+                        src="/mn/services-mop.webP"
                         alt="MN Glanzwerk Reinigungsexperte"
                         width={520}
                         height={520}
@@ -365,7 +365,7 @@ export default function HomePage() {
                 <div className="pointer-events-none absolute -top-10 -right-2 hidden md:block">
                   <div className="w-16 lg:w-20">
                     <Image
-                      src="/mn/about-spray-thumbs-up.png"
+                      src="/mn/about-spray-thumbs-up.webP"
                       alt="Mitarbeiter von MN GLANZWERK"
                       width={300}
                       height={300}
@@ -378,7 +378,7 @@ export default function HomePage() {
                 <div className="flex justify-center md:hidden">
                   <div className="w-16">
                     <Image
-                      src="/mn/about-spray-thumbs-up.png"
+                      src="/mn/about-spray-thumbs-up.webP"
                       alt="Mitarbeiter von MN GLANZWERK"
                       width={200}
                       height={200}

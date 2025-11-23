@@ -147,7 +147,7 @@ export default function AboutPage() {
           {/* Mobile: Figur oben zentriert */}
           <div className="flex justify-center md:hidden mb-3">
             <Image
-              src="/mn/services-vacuum.png"
+              src="/mn/services-vacuum.webP"
               alt="MN Glanzwerk – Staubsauger"
               width={260}
               height={260}
@@ -183,7 +183,7 @@ export default function AboutPage() {
           {/* Desktop: Figur schwebt oben rechts über der Karte */}
           <div className="pointer-events-none absolute -top-8 -right-3 hidden md:block">
             <Image
-              src="/mn/services-vacuum.png"
+              src="/mn/services-vacuum.webP"
               alt="MN Glanzwerk – Staubsauger"
               width={300}
               height={300}
