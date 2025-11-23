@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "Fensterreinigung im Wohnbereich",
+    title: "Fensterreinigung ",
     subtitle: "Streifenfreier Glanz – innen & außen, inklusive Rahmen",
     location: "Bad Segeberg & Umgebung",
     type: "Fensterreinigung",
@@ -16,7 +16,6 @@ const projects = [
       "/projects/fensterreinigung-wohnraum-glas-bad-segeberg-03.jpg",
       "/projects/fensterreinigung-wohnraum-glas-bad-segeberg-04.jpg",
       "/projects/fensterreinigung-wohnraum-glas-bad-segeberg-05.jpg",
-      "/projects/fensterreinigung-wohnraum-glas-bad-segeberg-06.jpg",
     ],
   },
   {
