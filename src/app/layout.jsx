@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
 import ClientRoot from "@/src/components/ClientRoot";
+import ScrollToTop from "@/src/components/ScrollToTop";
 
 // JSON-LD SCHEMA: LocalBusiness & CleaningService
 const mnGlanzwerkSchema = {
@@ -35,7 +36,8 @@ const mnGlanzwerkSchema = {
     { "@type": "City", "name": "Eutin" },
     { "@type": "City", "name": "Preetz" },
     { "@type": "City", "name": "Schwentintal" },
-    { "@type": "City", "name": "Deutsclandweit" },
+    // lieber "Deutschlandweit" als Land statt City:
+    { "@type": "Country", "name": "Deutschland" },
     { "@type": "AdministrativeArea", "name": "Bremen" }
   ],
   "priceRange": "$$",
@@ -83,6 +85,9 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className="bg-slate-50 text-slate-800 antialiased">
+        {/* WICHTIG: sorgt dafür, dass bei jedem Routenwechsel nach oben gesprungen wird */}
+        <ScrollToTop />
+
         <Header />
 
         <main className="pt-24 bg-gradient-to-b from-white via-slate-50 to-slate-100 min-h-[75vh]">
