@@ -214,7 +214,7 @@ export default function ContactForm() {
   {/* Mobile: Figur über der Box */}
   <div className="flex justify-center md:hidden -mt-8 mb-2">
     <Image
-      src="/mn/contact-support.webP"
+      src="/mn/contact-support.webp"
       alt="MN Glanzwerk – Kontakt"
       width={240}
       height={240}
