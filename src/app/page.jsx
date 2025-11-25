@@ -121,18 +121,18 @@ export default function HomePage() {
                   MN GLANZWERK
                 </h1>
                 <h3 className="text-2xl md:text-3xl font-semibold text-slate-800">
-                  CLEANING COMPANY – Gebäudereinigung in Schleswig-Holstein,
-                  Hamburg &amp; Bremen
+                  CLEANING COMPANY – Ihre Premium-Gebäudereinigung in
+                  Schleswig-Holstein, Hamburg & Bremen
                 </h3>
 
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  Mit Leidenschaft für Sauberkeit – MN GLANZWERK CLEANING
-                  COMPANY ist Ihr Reinigungsunternehmen mit Sitz in Bad
-                  Segeberg. Wir betreuen Kunden in ganz Schleswig-Holstein,
-                  Hamburg und Bremen – und auf Wunsch auch deutschlandweit. Ob
-                  Privatwohnung, Büro oder Gewerbe – wir sorgen für ein
-                  perfektes Reinigungsergebnis, auf das Sie sich verlassen
-                  können.
+                  Sauberkeit ist für uns mehr als nur ein Ergebnis – sie ist ein
+                  Versprechen. MN GLANZWERK CLEANING COMPANY steht für
+                  professionelle Reinigung auf höchstem Niveau. Mit Sitz in Bad
+                  Segeberg betreuen wir Privat- und Geschäftskunden in ganz
+                  Schleswig-Holstein, Hamburg und Bremen – auf Wunsch auch
+                  deutschlandweit. Ob Wohnung, Büro oder Gewerbefläche – wir
+                  sorgen für gepflegte Räume, in denen man sich gerne aufhält.
                 </p>
 
                 <ul className="grid gap-2 text-sm text-slate-700">
