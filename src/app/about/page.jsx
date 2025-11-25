@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AnimatedSection from "@/src/components/AnimatedSection";
 
 export const metadata = {
   title: "Über uns – MN GLANZWERK CLEANING COMPANY",
@@ -10,6 +11,8 @@ export default function AboutPage() {
   return (
     <div className="space-y-12 md:space-y-16">
       {/* Intro */}
+
+      <AnimatedSection>
       <section className="max-w-3xl space-y-4">
         <p className="inline-flex items-center rounded-full bg-brand/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
           Über uns
@@ -30,8 +33,10 @@ export default function AboutPage() {
           Arbeit mit Sorgfalt und Verantwortung ausführt.
         </p>
       </section>
+      </AnimatedSection>
 
       {/* Mission & Werte */}
+      <AnimatedSection delay={0.5}>
       <section className="grid gap-8 md:grid-cols-2 items-start">
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-slate-900">
@@ -77,8 +82,9 @@ export default function AboutPage() {
           </ul>
         </div>
       </section>
-
+      </AnimatedSection>
       {/* Für wen wir arbeiten */}
+      <AnimatedSection>
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold text-slate-900">
           Für wen wir arbeiten
@@ -119,8 +125,9 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
+      </AnimatedSection>
       {/* Erfahrung / Timeline */}
+      <AnimatedSection>
       <section className="grid gap-8 md:grid-cols-[1.3fr,1fr] items-start">
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-slate-900">
@@ -192,6 +199,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      </AnimatedSection>
     </div>
   );
 }

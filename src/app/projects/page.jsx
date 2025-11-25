@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
+import AnimatedSection from "@/src/components/AnimatedSection";
 const projects = [
   {
     title: "Fensterreinigung ",
@@ -64,6 +64,7 @@ export default function ProjectsPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
       {/* Kopfbereich */}
+      <AnimatedSection>
       <section className="space-y-5 text-center md:text-left">
         <p className="inline-flex items-center rounded-full bg-brand/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
           Projekte & Referenzen
@@ -80,6 +81,7 @@ export default function ProjectsPage() {
           </p>
         </div>
       </section>
+      </AnimatedSection>
 
       {/* Grid mit Projekten */}
       <section className="space-y-10">

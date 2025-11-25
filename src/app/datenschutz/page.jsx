@@ -1,6 +1,6 @@
 // src/app/datenschutz/page.jsx
 import Link from "next/link";
-
+import AnimatedSection from "@/src/components/AnimatedSection";
 export const metadata = {
   title: "Datenschutzerklärung – MN GLANZWERK CLEANING COMPANY",
   description:
@@ -11,6 +11,7 @@ export default function DatenschutzPage() {
   return (
     <div className="space-y-10 md:space-y-12">
       {/* Kopf */}
+    <AnimatedSection>
       <section className="max-w-3xl space-y-4">
         <p className="inline-flex items-center rounded-full bg-brand/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
           Datenschutz
@@ -30,8 +31,9 @@ export default function DatenschutzPage() {
           Bedarf von einer Rechtsanwältin / einem Rechtsanwalt prüfen.
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Verantwortlicher */}
+      <AnimatedSection delay={0.4}>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           1. Verantwortlicher
@@ -54,8 +56,9 @@ export default function DatenschutzPage() {
           </p>
         </div>
       </section>
-
+      </AnimatedSection>
       {/* Hosting */}
+      <AnimatedSection delay={0.5}>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           2. Hosting der Website
@@ -84,8 +87,9 @@ export default function DatenschutzPage() {
           Bereitstellung der Website.
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Zugriffsdaten / Logfiles */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           3. Zugriffsdaten (Server-Logfiles)
@@ -105,8 +109,9 @@ export default function DatenschutzPage() {
           Bereitstellung der Website).
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Kontaktformular */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           4. Kontaktaufnahme per Formular, Telefon oder E-Mail
@@ -140,8 +145,9 @@ export default function DatenschutzPage() {
           Aufbewahrungspflichten erforderlich sind.
         </p>
       </section>
-
+      </AnimatedSection>
       {/* WhatsApp-Hinweis */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           5. Kommunikation über WhatsApp
@@ -161,8 +167,9 @@ export default function DatenschutzPage() {
           einer effizienten Kommunikation mit Kunden).
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Cookies / Tracking (minimal) */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           6. Cookies und vergleichbare Technologien
@@ -180,8 +187,9 @@ export default function DatenschutzPage() {
           Website).
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Speicherdauer */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           7. Speicherdauer
@@ -194,8 +202,9 @@ export default function DatenschutzPage() {
           gesetzlichen Vorgaben gelöscht oder anonymisiert.
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Rechte der Betroffenen */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           8. Ihre Rechte als betroffene Person
@@ -224,8 +233,9 @@ export default function DatenschutzPage() {
           „Verantwortlicher“.
         </p>
       </section>
-
+      </AnimatedSection>
       {/* SSL */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           9. Datensicherheit (SSL-/TLS-Verschlüsselung)
@@ -239,8 +249,9 @@ export default function DatenschutzPage() {
           die Adresszeile mit „https://“ beginnt.
         </p>
       </section>
-
+      </AnimatedSection>
       {/* Änderungen / Stand */}
+      <AnimatedSection>
       <section className="space-y-3 max-w-3xl">
         <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
           10. Änderungen dieser Datenschutzerklärung
@@ -255,6 +266,7 @@ export default function DatenschutzPage() {
           Stand dieser Datenschutzerklärung: {new Date().getFullYear()}
         </p>
       </section>
+      </AnimatedSection>
     </div>
   );
 }
