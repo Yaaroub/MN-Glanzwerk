@@ -42,6 +42,11 @@ export default function ContactForm() {
 
   return (
     <div className="space-y-10 md:space-y-14">
+      <AnimatedSection>
+      <p className="inline-flex items-center rounded-full bg-brand/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
+          KONTAKT
+        </p>
+      </AnimatedSection>
     <form className="space-y-5" onSubmit={onSubmit}>
       {/* Honeypot (unsichtbar) */}
       <input
