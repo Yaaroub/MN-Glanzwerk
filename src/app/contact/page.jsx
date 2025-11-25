@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import AnimatedSection from "@/src/components/AnimatedSection";
 export default function ContactForm() {
   const [state, setState] = useState({ sending: false, ok: null, error: "" });
 
@@ -55,9 +56,11 @@ export default function ContactForm() {
       {/* Name + E-Mail */}
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-1.5">
+          <AnimatedSection delay={.1}>
           <label className="block text-sm font-medium text-slate-800">
             Name *
           </label>
+          </AnimatedSection>
           <input
             name="name"
             type="text"
@@ -67,9 +70,11 @@ export default function ContactForm() {
           />
         </div>
         <div className="space-y-1.5">
+          <AnimatedSection delay={.2}>
           <label className="block text-sm font-medium text-slate-800">
             E-Mail *
           </label>
+          </AnimatedSection>
           <input
             name="email"
             type="email"
@@ -83,9 +88,11 @@ export default function ContactForm() {
       {/* Telefon + PLZ/Ort */}
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-1.5">
+          <AnimatedSection delay={.3}>
           <label className="block text-sm font-medium text-slate-800">
             Telefon / WhatsApp
           </label>
+          </AnimatedSection>
           <input
             name="phone"
             type="tel"
@@ -94,9 +101,11 @@ export default function ContactForm() {
           />
         </div>
         <div className="space-y-1.5">
+          <AnimatedSection delay={.4}>
           <label className="block text-sm font-medium text-slate-800">
             PLZ / Ort
           </label>
+          </AnimatedSection>
           <input
             name="location"
             type="text"
@@ -109,9 +118,11 @@ export default function ContactForm() {
       {/* Leistung + Objektart */}
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-1.5">
+          <AnimatedSection delay={.5}>
           <label className="block text-sm font-medium text-slate-800">
             Gewünschte Leistung *
           </label>
+          </AnimatedSection>
           <select
             name="service"
             required
@@ -129,9 +140,11 @@ export default function ContactForm() {
           </select>
         </div>
         <div className="space-y-1.5">
+          <AnimatedSection delay={.6}>
           <label className="block text-sm font-medium text-slate-800">
             Objektart
           </label>
+          </AnimatedSection>
           <input
             name="objectType"
             type="text"
@@ -143,9 +156,11 @@ export default function ContactForm() {
 
       {/* Nachricht */}
       <div className="space-y-1.5">
+        <AnimatedSection delay={.7}>
         <label className="block text-sm font-medium text-slate-800">
           Nachricht / Beschreibung *
         </label>
+        </AnimatedSection>
         <textarea
           name="message"
           rows={5}
