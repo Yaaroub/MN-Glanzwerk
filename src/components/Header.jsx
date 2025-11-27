@@ -126,44 +126,45 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm">
-          <div className="absolute top-[4.25rem] inset-x-4 rounded-2xl bg-white/95 border border-slate-200 shadow-xl">
-            <nav className="flex flex-col px-6 py-4 space-y-2 text-sm text-slate-700">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-2 rounded-lg transition ${
-                    isActive(item.href)
-                      ? "bg-brand/10 text-brand font-semibold"
-                      : "hover:bg-slate-100"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+  <div className="md:hidden fixed inset-x-0 top-[4.25rem] bottom-0 z-40 bg-black/30 backdrop-blur-sm">
+    <div className="absolute inset-x-4 top-2 rounded-2xl bg-white/95 border border-slate-200 shadow-xl">
+      <nav className="flex flex-col px-6 py-4 space-y-2 text-sm text-slate-700">
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`px-3 py-2 rounded-lg transition ${
+              isActive(item.href)
+                ? "bg-brand/10 text-brand font-semibold"
+                : "hover:bg-slate-100"
+            }`}
+          >
+            {item.label}
+          </Link>
+        ))}
 
-              <div className="pt-3 mt-2 border-t border-slate-200 space-y-2">
-                <a
-                  href="tel:+491637885512"
-                  className="block text-xs text-slate-600"
-                >
-                  Telefon / WhatsApp:{" "}
-                  <span className="font-medium text-brand">
-                    0163&nbsp;7885512
-                  </span>
-                </a>
-                <Link
-                  href="/contact"
-                  className="mt-1 inline-flex w-full items-center justify-center px-4 py-2 rounded-full bg-brand text-white text-sm font-semibold shadow-md hover:bg-brand-soft transition"
-                >
-                  Angebot anfordern
-                </Link>
-              </div>
-            </nav>
-          </div>
+        <div className="pt-3 mt-2 border-t border-slate-200 space-y-2">
+          <a
+            href="tel:+491637885512"
+            className="block text-xs text-slate-600"
+          >
+            Telefon / WhatsApp:{" "}
+            <span className="font-medium text-brand">
+              0163&nbsp;7885512
+            </span>
+          </a>
+          <Link
+            href="/contact"
+            className="mt-1 inline-flex w-full items-center justify-center px-4 py-2 rounded-full bg-brand text-white text-sm font-semibold shadow-md hover:bg-brand-soft transition"
+          >
+            Angebot anfordern
+          </Link>
         </div>
-      )}
+      </nav>
+    </div>
+  </div>
+)}
+
     </header>
   );
 }
