@@ -1,3 +1,4 @@
+// src/components/ScrollToTop.jsx
 "use client";
 
 import { useEffect } from "react";
@@ -9,28 +10,18 @@ export default function ScrollToTop() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const html = document.documentElement;
+    // Scroll-Restore von Next/Browser ausschalten
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
 
-    // altes Verhalten merken
-    const previousScrollBehavior = html.style.scrollBehavior;
-
-    // smooth temporär ausschalten, damit kein schneller Animations-Scroll passiert
-    html.style.scrollBehavior = "auto";
-
-    // direkt nach oben springen
+    // Immer hart nach oben springen – kein smooth
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "auto"
+      behavior: "auto",
     });
-
-    // nach kurzem Moment wieder das ursprüngliche Verhalten herstellen (smooth)
-    const timeout = setTimeout(() => {
-      html.style.scrollBehavior = previousScrollBehavior || "smooth";
-    }, 50);
-
-    return () => clearTimeout(timeout);
   }, [pathname]);
 
-    return null;
+  return null;
 }

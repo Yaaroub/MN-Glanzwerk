@@ -74,7 +74,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="de" className="scroll-smooth">
+    <html lang="de" >
       <head>
         <script
           type="application/ld+json"
