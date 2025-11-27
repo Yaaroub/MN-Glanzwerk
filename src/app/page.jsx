@@ -15,6 +15,7 @@ import MapBox from "./MapBox";
 import AnimatedSection from "@/src/components/AnimatedSection";
 import StatsSection from "@/src/components/StatsSection";
 import HeroDark from "@/src/components/HeroDark";
+import { motion } from "framer-motion";
 
 // --- SEO-Metadaten für die Startseite ---
 export const metadata = {
@@ -90,7 +91,14 @@ const services = [
     desc: "Planbare, wiederkehrende Reinigung für Privat- und Geschäftskunden mit festen Intervallen.",
   },
 ];
-
+const serviceItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.45, ease: "easeOut" } 
+  },
+};
 export default function HomePage() {
   return (
     <>
@@ -99,7 +107,7 @@ export default function HomePage() {
         <HeroDark />
 
         {/* Einleitungssektion mit Text + Info-Karte */}
-        <AnimatedSection delay={0}>
+        <AnimatedSection >
           <section className="grid gap-10 md:grid-cols-2 items-center">
             {/* Text-Spalte */}
             <div className="space-y-6">
@@ -245,7 +253,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         {/* LEISTUNGEN – Highlight-Section */}
-        <AnimatedSection delay={0.2}>
+        <AnimatedSection >
           <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand to-slate-900 px-6 py-10 md:px-10 md:py-14 text-slate-50">
             {/* Deko-Glows im Hintergrund */}
             <div className="pointer-events-none absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white/10 blur-3xl opacity-40" />
@@ -333,7 +341,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         {/* WARUM WIR */}
-        <AnimatedSection delay={0.3}>
+        <AnimatedSection >
           <section className="grid gap-8 md:grid-cols-[1.4fr,1fr] items-start">
             <div className="space-y-4">
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
@@ -417,7 +425,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         {/* MAP SECTION */}
-        <AnimatedSection delay={0.4}>
+        <AnimatedSection >
           <section className="space-y-6">
             <h2 className="text-2xl md:text-3xl font-semibold text-center text-slate-900">
               Unser Standort &amp; Einsatzgebiete
@@ -434,7 +442,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         {/* CALL TO ACTION */}
-        <AnimatedSection delay={0.5}>
+        <AnimatedSection >
           <section className="rounded-3xl bg-white/90 backdrop-blur border border-slate-200 shadow-sm px-6 py-8 md:px-10 md:py-10 flex flex-col md:flex-row items-center gap-8">
             {/* Text + CTA – LINKS */}
             <div className="flex-1 space-y-4 text-center md:text-left md:order-1">
