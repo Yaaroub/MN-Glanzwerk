@@ -7,7 +7,7 @@ import { Building2, Users2, ClipboardList } from "lucide-react";
 const stats = [
   {
     label: "Betreute Objekte",
-    value: "24+",
+    value: "50+",
     description: "Wohn- und Geschäftsräume in Schleswig-Holstein & Bremen.",
     icon: Building2,
   },
