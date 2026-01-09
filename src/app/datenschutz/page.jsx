@@ -42,7 +42,7 @@ export default function DatenschutzPage() {
           Verantwortlich für die Datenverarbeitung auf dieser Website ist:
         </p>
         <div className="rounded-2xl bg-white/90 backdrop-blur border border-slate-200 shadow-sm p-4 text-sm text-slate-700">
-          <p className="font-semibold">MN GLANZWERK CLEANING COMPANY</p>
+          <p className="font-semibold">MN GLANZWERK</p>
           <p>Kurhausstraße 46</p>
           <p>23795 Bad Segeberg</p>
           <p className="mt-2">

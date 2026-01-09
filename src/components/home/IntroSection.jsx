@@ -24,7 +24,7 @@ export default function IntroSection() {
         {/* Achte drauf: HeroDark sollte idealerweise das H1 haben.
            Wenn HeroDark KEIN H1 hat, mach hier ein H1 draus. */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
-          MN GLANZWERK CLEANING COMPANY
+          MN GLANZWERK
         </h2>
         <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-800">
           Ihr regionaler Partner in Norddeutschland

@@ -23,7 +23,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-base text-slate-600 leading-relaxed">
-            MN GLANZWERK CLEANING COMPANY ist Ihr professioneller Partner für
+            <strong>MN GLANZWERK</strong> ist Ihr professioneller Partner für
             hochwertige Gebäudereinigung mit Sitz in Bad Segeberg. Wir betreuen
             Privat- und Geschäftskunden in ganz Schleswig-Holstein, Hamburg und
             Bremen – und übernehmen auf Wunsch auch deutschlandweite Projekte.

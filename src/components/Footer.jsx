@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Info / Brand */}
           <div>
             <h3 className="font-semibold text-xl mb-2 text-white">
-              MN GLANZWERK CLEANING COMPANY
+              MN GLANZWERK <br/> Profi. Reinigungsdienst
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
               Ihr Partner für professionelle Reinigung mit Sitz in Bad Segeberg –
@@ -136,7 +136,7 @@ export default function Footer() {
         {/* Unterer Bereich */}
         <div className="border-t border-sky-800/60 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <span>
-            © {year} MN GLANZWERK CLEANING COMPANY – Alle Rechte vorbehalten.
+            © {year} MN GLANZWERK Profi. Reinigungsdienst – Alle Rechte vorbehalten.
           </span>
           <span className="text-slate-500">
             Entwickelt von{" "}

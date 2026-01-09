@@ -75,7 +75,7 @@ export default function Header() {
               MN GLANZWERK
             </span>
             <span className="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-[0.14em]">
-              Cleaning Company
+              Profi. Reinigungsdienst
             </span>
           </div>
         </Link>

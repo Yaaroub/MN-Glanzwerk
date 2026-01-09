@@ -1,9 +1,9 @@
 // src/app/impressum/page.jsx
 import AnimatedSection from "@/src/components/AnimatedSection";
 export const metadata = {
-  title: "Impressum – MN GLANZWERK CLEANING COMPANY",
+  title: "Impressum – MN GLANZWERK",
   description:
-    "Impressum der MN GLANZWERK CLEANING COMPANY – Angaben gemäß § 5 TMG und § 55 RStV.",
+    "Impressum der MN GLANZWERK – Angaben gemäß § 5 TMG und § 55 RStV.",
 };
 
 export default function ImpressumPage() {
@@ -32,7 +32,7 @@ export default function ImpressumPage() {
             Verantwortlich für den Inhalt dieser Website
           </h2>
           <div className="rounded-2xl bg-white/90 backdrop-blur border border-slate-200 shadow-sm p-4 space-y-1">
-            <p className="font-semibold">MN GLANZWERK CLEANING COMPANY</p>
+            <p className="font-semibold">MN GLANZWERK</p>
             <p>Kurhausstraße 46</p>
             <p>23795 Bad Segeberg</p>
             <p>Deutschland</p>

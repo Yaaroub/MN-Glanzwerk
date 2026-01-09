@@ -57,7 +57,7 @@ export default function HeroDark() {
             text-[10px] font-semibold uppercase tracking-[0.20em] text-sky-100"
           >
             <span className="h-3 w-3 bg-brand rounded-full" />
-            MN GLANZWERK CLEANING COMPANY
+            MN GLANZWERK
           </motion.p>
 
           {/* Titel */}
