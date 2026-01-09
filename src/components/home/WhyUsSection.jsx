@@ -1,6 +1,6 @@
 // src/components/home/WhyUsSection.jsx
 import Image from "next/image";
-import { PrimaryLink } from "@/src/components/ui/ButtonLink";
+import { GhostTel, PrimaryLink } from "@/src/components/ui/ButtonLink";
 
 export default function WhyUsSection() {
   return (
@@ -71,9 +71,9 @@ export default function WhyUsSection() {
             </div>
           </div>
 
-          <PrimaryLink href="/contact" className="bg-white text-brand hover:bg-slate-100">
+          <GhostTel href="/contact" className="bg-white text-brand hover:bg-slate-100">
             Kontaktformular öffnen
-          </PrimaryLink>
+          </GhostTel>
         </div>
       </div>
     </section>
