@@ -31,7 +31,7 @@ export default function HeroDark() {
     <section className="relative w-full overflow-hidden bg-slate-950 rounded-xl">
       {/* Hintergrundbild */}
       <Image
-        src="/hero/grundreinigung-leerraeume-01 Kopie.webp"
+        src="/hero/mn-glanzwerk-hero.webp"
         alt="MN GLANZWERK – professionelle Gebäudereinigung"
         fill
         priority
