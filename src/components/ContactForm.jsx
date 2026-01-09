@@ -1,7 +1,7 @@
 // src/components/ContactForm.jsx
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import AnimatedSection from "@/src/components/AnimatedSection";
 
@@ -31,6 +31,62 @@ export default function ContactForm() {
     ],
     []
   );
+
+  // Premium Toast (Bottom) – show/hide + animation
+  const [toast, setToast] = useState({
+    mounted: false, // in DOM
+    visible: false, // animated state
+    type: "success", // "success" | "error"
+    title: "",
+    message: "",
+  });
+
+  const toastTimerRef = useRef(null);
+  const toastUnmountRef = useRef(null);
+
+  function showToast({ type, title, message }) {
+    // Cleanup existing timers
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    if (toastUnmountRef.current) clearTimeout(toastUnmountRef.current);
+
+    // Mount + set content
+    setToast({
+      mounted: true,
+      visible: false,
+      type,
+      title,
+      message,
+    });
+
+    // Next frame => animate in
+    requestAnimationFrame(() => {
+      setToast((t) => ({ ...t, visible: true }));
+    });
+
+    // Auto dismiss after 6s
+    toastTimerRef.current = setTimeout(() => {
+      hideToast();
+    }, 6000);
+  }
+
+  function hideToast() {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+
+    // Animate out
+    setToast((t) => ({ ...t, visible: false }));
+
+    // Unmount after animation
+    toastUnmountRef.current = setTimeout(() => {
+      setToast((t) => ({ ...t, mounted: false }));
+    }, 260);
+  }
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+      if (toastUnmountRef.current) clearTimeout(toastUnmountRef.current);
+    };
+  }, []);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -65,19 +121,28 @@ export default function ContactForm() {
       }
 
       setState({ sending: false, ok: true, error: "" });
+      showToast({
+        type: "success",
+        title: "Danke! ✅",
+        message: "Ihre Nachricht wurde erfolgreich gesendet.",
+      });
+
       form.reset();
     } catch (err) {
-      setState({
-        sending: false,
-        ok: false,
-        error: err?.message || "Fehler",
+      const msg = err?.message || "Fehler";
+      setState({ sending: false, ok: false, error: msg });
+
+      showToast({
+        type: "error",
+        title: "Fehler ❌",
+        message: msg,
       });
     }
   }
 
   return (
     <section className="relative">
-      {/* MOBILE: Premium Sticky Action Bar */}
+      {/* MOBILE: Premium Sticky Action Bar (nur mobile) */}
       <div className="lg:hidden fixed bottom-3 left-0 right-0 z-50 px-3">
         <div className="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur shadow-lg p-2">
           <div className="grid grid-cols-2 gap-2">
@@ -113,7 +178,8 @@ export default function ContactForm() {
               type="button"
               onClick={() => {
                 const el = document.getElementById("mn-contact-form");
-                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                if (el)
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
               className="text-[11px] font-semibold text-brand hover:opacity-80 transition"
             >
@@ -131,10 +197,9 @@ export default function ContactForm() {
             <div className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
 
-            {/* Header */}
-            <div className="relative p-5 sm:p-6 md:p-7 ">
+            <div className="relative p-5 sm:p-6 md:p-7">
               {/* Desktop: Figur schwebt */}
-              <div className="pointer-events-none absolute  -right-3 hidden lg:block ">
+              <div className="pointer-events-none absolute -right-3 hidden lg:block">
                 <Image
                   src="/mn/contact-support.webp"
                   alt="MN Glanzwerk – Kontakt"
@@ -204,7 +269,9 @@ export default function ContactForm() {
                   <p className="text-[11px] uppercase tracking-wide text-white/70">
                     Telefon / WhatsApp
                   </p>
-                  <p className="text-sm font-semibold text-white">{phoneDisplay}</p>
+                  <p className="text-sm font-semibold text-white">
+                    {phoneDisplay}
+                  </p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -232,7 +299,7 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              {/* Social (kompakt) */}
+              {/* Social */}
               <div className="mt-5 pt-4 border-t border-white/20">
                 <p className="text-xs font-medium uppercase tracking-wide text-white/70 mb-2">
                   Folge uns
@@ -304,33 +371,11 @@ export default function ContactForm() {
                   </p>
                 </div>
 
-                {/* Desktop Mini-Icon */}
                 <div className="hidden md:block">
                   <div className="h-12 w-12 rounded-2xl bg-brand/10 border border-brand/15 flex items-center justify-center">
                     <span className="text-brand font-bold">MN</span>
                   </div>
                 </div>
-              </div>
-
-              {/* Status Alerts */}
-              <div aria-live="polite">
-                {state.ok === true && (
-                  <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-                    <p className="font-semibold">Danke! ✅</p>
-                    <p className="text-[13px]">
-                      Ihre Nachricht wurde erfolgreich gesendet.
-                    </p>
-                  </div>
-                )}
-
-                {state.ok === false && (
-                  <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
-                    <p className="font-semibold">Fehler ❌</p>
-                    <p className="text-[13px]">
-                      Fehler beim Versand: {state.error}
-                    </p>
-                  </div>
-                )}
               </div>
 
               <form
@@ -348,7 +393,7 @@ export default function ContactForm() {
                   aria-hidden="true"
                 />
 
-                {/* Section: Kontakt */}
+                {/* Section: Kontaktdaten */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
@@ -528,7 +573,7 @@ export default function ContactForm() {
                   </div>
                 </div>
 
-                {/* Section: Nachricht */}
+                {/* Section: Beschreibung */}
                 <div className="space-y-3">
                   <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Beschreibung
@@ -590,7 +635,7 @@ export default function ContactForm() {
                   <p className="text-[11px] text-slate-500">
                     Antwort in der Regel{" "}
                     <span className="font-semibold text-slate-700">
-                      innerhalb von 24 Stunden
+                      am selben Tag
                     </span>
                     .
                   </p>
@@ -603,9 +648,71 @@ export default function ContactForm() {
           </div>
 
           {/* Desktop helper row */}
-          
+          <div className="mt-4 hidden lg:flex items-center justify-between text-xs text-slate-500">
+            <p>
+              Tipp: Für sehr schnelle Hilfe nutzen Sie WhatsApp oder rufen Sie
+              direkt an.
+            </p>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-brand hover:opacity-80 transition"
+            >
+              WhatsApp öffnen →
+            </a>
+          </div>
         </div>
       </div>
+
+      {/* Bottom Toast (All screens) */}
+      {toast.mounted && (
+        <div
+          aria-live={toast.type === "error" ? "assertive" : "polite"}
+          className="fixed inset-x-0 bottom-4 z-[80] flex justify-center px-4"
+        >
+          <div
+            className={[
+              "w-full max-w-md sm:w-auto rounded-2xl shadow-2xl border",
+              "backdrop-blur bg-white/90",
+              "transition-all duration-200 ease-out",
+              toast.visible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-3",
+              toast.type === "success" ? "border-emerald-200" : "border-rose-200",
+            ].join(" ")}
+          >
+            <div className="flex items-start gap-3 px-4 py-3">
+              <div
+                className={[
+                  "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-white",
+                  toast.type === "success" ? "bg-emerald-600" : "bg-rose-600",
+                ].join(" ")}
+              >
+                {toast.type === "success" ? "✓" : "!"}
+              </div>
+
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-slate-900 leading-tight">
+                  {toast.title}
+                </p>
+                <p className="text-[13px] text-slate-600 leading-snug">
+                  {toast.message}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={hideToast}
+                className="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-xl hover:bg-slate-100 transition text-slate-700"
+                aria-label="Benachrichtigung schließen"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
