@@ -52,10 +52,10 @@ export default function ImpressumPage() {
               <p>
                 <span className="font-medium">E-Mail:</span>{" "}
                 <a
-                  href="mailto:glanzwerkglanzwerk@gmail.com"
+                  href="mailto:kontakt@mn-glanzwerk.de"
                   className="text-brand hover:text-brand-accent"
                 >
-                  glanzwerkglanzwerk@gmail.com
+                  kontakt@mn-glanzwerk.de
                 </a>
               </p>
             </div>

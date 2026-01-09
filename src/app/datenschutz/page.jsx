@@ -51,7 +51,7 @@ export default function DatenschutzPage() {
             E-Mail:{" "}
             <span className="text-slate-800">
               {/* passe diese Adresse später an */}
-              info@mn-glanzwerk.de
+              kontakt@mn-glanzwerk.de
             </span>
           </p>
         </div>
