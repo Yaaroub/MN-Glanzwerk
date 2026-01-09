@@ -9,10 +9,16 @@ export async function POST(req) {
     const name = String(body.name || "").trim();
     const email = String(body.email || "").trim();
     const phone = String(body.phone || "").trim();
-    const location = String(body.location || "").trim();
+
+    // Adresse (Pflicht)
+    const street = String(body.street || "").trim();
+    const zip = String(body.zip || "").trim();
+    const city = String(body.city || "").trim();
+
     const service = String(body.service || "").trim();
     const objectType = String(body.objectType || "").trim();
     const message = String(body.message || "").trim();
+
     const honey = String(body.company || "").trim(); // Honeypot
 
     // Honeypot: Bots füllen meist dieses Feld → wir tun so, als wäre alles ok
@@ -20,14 +26,19 @@ export async function POST(req) {
       return Response.json({ ok: true }, { status: 200 });
     }
 
-    // Basic-Validierung
-    if (!name || !email || !service || !message) {
+    // Basic-Validierung (Pflichtfelder)
+    if (!name || !email || !service || !message || !street || !zip || !city) {
       return Response.json(
-        { ok: false, error: "Bitte alle Pflichtfelder ausfüllen." },
+        {
+          ok: false,
+          error:
+            "Bitte alle Pflichtfelder ausfüllen (inkl. vollständiger Adresse: Straße, PLZ, Ort).",
+        },
         { status: 400 }
       );
     }
 
+    // E-Mail-Validierung
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!emailOk) {
       return Response.json(
@@ -36,16 +47,26 @@ export async function POST(req) {
       );
     }
 
-    // 🔹 HIER: Transporter DEFINIEREN
+    // PLZ-Validierung (DE: 5-stellig)
+    if (!/^\d{5}$/.test(zip)) {
+      return Response.json(
+        { ok: false, error: "Bitte eine gültige 5-stellige PLZ eingeben." },
+        { status: 400 }
+      );
+    }
+
+    // Transporter
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST, // smtp.gmail.com
+      host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT || 587),
       secure: String(process.env.SMTP_SECURE || "false") === "true", // false = STARTTLS
       auth: {
-        user: process.env.SMTP_USER, // glanzwerkglanzwerk@gmail.com
-        pass: process.env.SMTP_PASS, // App-Passwort
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
+
+    const fullAddress = `${street}, ${zip} ${city}`;
 
     const html = `
       <div style="font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5;color:#0f172a">
@@ -56,7 +77,7 @@ export async function POST(req) {
             <tr><td style="padding:6px 0;width:180px;color:#334155">Name</td><td style="padding:6px 0">${escapeHtml(name)}</td></tr>
             <tr><td style="padding:6px 0;color:#334155">E-Mail</td><td style="padding:6px 0">${escapeHtml(email)}</td></tr>
             <tr><td style="padding:6px 0;color:#334155">Telefon</td><td style="padding:6px 0">${escapeHtml(phone)}</td></tr>
-            <tr><td style="padding:6px 0;color:#334155">PLZ / Ort</td><td style="padding:6px 0">${escapeHtml(location)}</td></tr>
+            <tr><td style="padding:6px 0;color:#334155">Adresse</td><td style="padding:6px 0">${escapeHtml(fullAddress)}</td></tr>
             <tr><td style="padding:6px 0;color:#334155">Leistung</td><td style="padding:6px 0">${escapeHtml(service)}</td></tr>
             <tr><td style="padding:6px 0;color:#334155">Objektart</td><td style="padding:6px 0">${escapeHtml(objectType)}</td></tr>
             <tr><td style="padding:6px 0;color:#334155;vertical-align:top">Nachricht</td><td style="padding:6px 0;white-space:pre-wrap">${escapeHtml(message)}</td></tr>
@@ -65,17 +86,18 @@ export async function POST(req) {
       </div>
     `;
 
-    // Mail an dein IONOS-Postfach
     await transporter.sendMail({
-      from: process.env.MAIL_FROM, // "MN GLANZWERK Kontaktformular <glanzwerkglanzwerk@gmail.com>"
-      to: process.env.MAIL_TO,     // info@mn-glanzwerk.de
+      from: process.env.MAIL_FROM,
+      to: process.env.MAIL_TO,
       subject: `Kontaktformular: ${name} – ${service || "Anfrage"}`,
       replyTo: email,
       text: plainText({
         name,
         email,
         phone,
-        location,
+        street,
+        zip,
+        city,
         service,
         objectType,
         message,
@@ -108,7 +130,7 @@ function plainText(data) {
 Name: ${data.name}
 E-Mail: ${data.email}
 Telefon: ${data.phone}
-PLZ/Ort: ${data.location}
+Adresse: ${data.street}, ${data.zip} ${data.city}
 Leistung: ${data.service}
 Objektart: ${data.objectType}
 
