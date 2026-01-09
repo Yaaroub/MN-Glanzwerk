@@ -27,7 +27,7 @@ export default function IntroSection() {
           MN GLANZWERK CLEANING COMPANY
         </h2>
         <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold text-slate-800">
-          Ihr Partner für anspruchsvolle Gebäudereinigung in Norddeutschland
+          Ihr regionaler Partner in Norddeutschland
         </h3>
 
         <p className="text-lg text-slate-600 leading-relaxed">
