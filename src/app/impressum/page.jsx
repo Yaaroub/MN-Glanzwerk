@@ -64,7 +64,7 @@ export default function ImpressumPage() {
               <p>
                 <span className="font-medium">USt-IdNr.:</span> DE455217323
               </p>
-             
+            
             </div>
           </div>
         </section>
