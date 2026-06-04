@@ -37,7 +37,7 @@ export default function ImpressumPage() {
             <p className="font-semibold">
               MN GLANZWERK – Einzelunternehmen
             </p>
-            <p>Inhaberin: Nermien Safar</p>
+            <p>Inhaberin: Mahmoud Fani</p>
             <p>Kurhausstraße 46</p>
             <p>23795 Bad Segeberg</p>
             <p>Deutschland</p>
