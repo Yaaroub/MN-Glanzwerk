@@ -19,7 +19,7 @@ export function GET() {
 - Angebot anfordern: ${site.url}/contact
 
 ## Leistungen
-${services.map((s) => `- ${s.title}: ${s.desc}`).join("\n")}
+${services.map((s) => `- ${s.title} (${site.url}/leistungen#${s.slug}): ${s.long} Enthalten: ${s.includes.join(", ")}.`).join("\n")}
 
 ## Einsatzgebiet
 ${cities.join(", ")} – ganz Schleswig-Holstein, Hamburg und Bremen; größere Projekte deutschlandweit.
@@ -29,6 +29,7 @@ ${faqs.map((f) => `### ${f.q}\n${f.a}`).join("\n\n")}
 
 ## Seiten
 - [Startseite](${site.url}/): Überblick über Leistungen und Einsatzgebiet
+- [Leistungen im Detail](${site.url}/leistungen): alle Reinigungsleistungen mit Leistungsumfang
 - [Kontakt & Angebot](${site.url}/contact): kostenloses Angebot anfordern
 - [Projekte & Referenzen](${site.url}/projects): Fotos realer Einsätze
 - [Über uns](${site.url}/about): Team, Werte und Erfahrung

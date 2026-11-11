@@ -41,6 +41,8 @@ export const metadata = {
     "Endreinigung",
     "Praxisreinigung",
     "Treppenhausreinigung",
+    "Autoreinigung Bad Segeberg",
+    "Fahrzeugreinigung Firmenflotte",
   ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,

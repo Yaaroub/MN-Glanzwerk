@@ -33,7 +33,6 @@ const nextConfig = {
       { source: "/ueber-uns", destination: "/about", permanent: true },
       { source: "/projekte", destination: "/projects", permanent: true },
       { source: "/referenzen", destination: "/projects", permanent: true },
-      { source: "/leistungen", destination: "/#leistungen", permanent: true },
     ];
   },
 };

@@ -604,6 +604,109 @@ body {
   100% { opacity: 0; transform: translateY(-260%) translateX(40%) scale(1.2); }
 }
 
+/* ============ Leistungs-Grafiken (ServiceArt) ============ */
+.service-art .o {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.service-art * {
+  transition: none;
+}
+.sa-twinkle { animation: saTwinkle 2.4s ease-in-out infinite; }
+@keyframes saTwinkle {
+  0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.6; }
+  50% { transform: scale(1.1) rotate(45deg); opacity: 1; }
+}
+.sa-sway { animation: saSway 3.2s ease-in-out infinite; }
+@keyframes saSway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+.sa-float { animation: saFloat 3.6s ease-in-out infinite; }
+@keyframes saFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.sa-blink { animation: saBlinkCursor 1s steps(1) infinite; }
+@keyframes saBlinkCursor {
+  50% { visibility: hidden; }
+}
+.sa-steam { animation: saSteam 2.4s ease-in-out infinite; }
+@keyframes saSteam {
+  0% { transform: translateY(4px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(-6px); opacity: 0; }
+}
+.sa-bubble { animation: saBubble 1.6s ease-out infinite; }
+@keyframes saBubble {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-22px) scale(1.1); opacity: 0; }
+}
+.sa-spin { animation: saSpin 3s linear infinite; }
+.sa-spin-slow { animation: saSpin 14s linear infinite; }
+@keyframes saSpin {
+  to { transform: rotate(360deg); }
+}
+.sa-drift { animation: saDrift 12s ease-in-out infinite; }
+@keyframes saDrift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(18px); }
+}
+.sa-glint { animation: saGlint 2.8s ease-in-out infinite; }
+@keyframes saGlint {
+  0%, 60%, 100% { opacity: 0.3; }
+  75% { opacity: 1; }
+}
+.sa-wipe { animation: saWipe 0.9s ease-in-out infinite alternate; }
+@keyframes saWipe {
+  from { transform: translateX(-30px); }
+  to { transform: translateX(30px); }
+}
+.sa-mop { animation: saMop 0.7s ease-in-out infinite alternate; }
+@keyframes saMop {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(6deg); }
+}
+.sa-swing { animation: saSwing 2.2s ease-in-out infinite; }
+@keyframes saSwing {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+.sa-squeeze { animation: saSqueeze 1.4s ease-in-out infinite; }
+@keyframes saSqueeze {
+  0%, 70%, 100% { transform: scaleY(1); }
+  80% { transform: scaleY(0.96); }
+}
+.sa-mist { animation: saMist 1.4s ease-out infinite; }
+@keyframes saMist {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  20% { opacity: 0.9; }
+  100% { transform: translate(var(--mx), var(--my)) scale(1.4); opacity: 0; }
+}
+.sa-wobble { animation: saWobble 1.8s ease-in-out infinite; }
+@keyframes saWobble {
+  0%, 100% { transform: rotate(-8deg) scale(1); }
+  50% { transform: rotate(8deg) scale(1.06); }
+}
+.sa-ring { animation: saRing 2.6s ease-in-out infinite; }
+@keyframes saRing {
+  0%, 70%, 100% { transform: rotate(0deg); }
+  75% { transform: rotate(-12deg); }
+  80% { transform: rotate(10deg); }
+  85% { transform: rotate(-6deg); }
+  90% { transform: rotate(4deg); }
+}
+.sa-water path { animation: saWater 0.45s linear infinite; }
+@keyframes saWater {
+  to { stroke-dashoffset: -26; }
+}
+.sa-scrub { animation: saScrub 0.35s ease-in-out infinite alternate; }
+@keyframes saScrub {
+  from { transform: translateX(-3px); }
+  to { transform: translateX(3px); }
+}
+
 /* Lightbox-Bildwechsel */
 .lightbox-in {
   animation: lightboxIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);

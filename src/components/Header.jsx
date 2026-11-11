@@ -10,7 +10,7 @@ import { site } from "@/src/lib/site";
 
 const navItems = [
   { href: "/", label: "Startseite" },
-  { href: "/#leistungen", label: "Leistungen" },
+  { href: "/leistungen", label: "Leistungen" },
   { href: "/about", label: "Über uns" },
   { href: "/projects", label: "Projekte" },
   { href: "/contact", label: "Kontakt" },

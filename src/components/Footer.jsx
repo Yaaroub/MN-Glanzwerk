@@ -68,9 +68,9 @@ export default function Footer() {
           <div>
             <h2 className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-white">Leistungen</h2>
             <ul className="space-y-2 text-sm">
-              {services.slice(0, 6).map((s) => (
+              {services.map((s) => (
                 <li key={s.title}>
-                  <Link href="/#leistungen" className={linkCls}>{s.short}</Link>
+                  <Link href={`/leistungen#${s.slug}`} className={linkCls}>{s.short}</Link>
                 </li>
               ))}
             </ul>

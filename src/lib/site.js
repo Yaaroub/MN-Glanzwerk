@@ -24,7 +24,7 @@ export const site = {
     "https://www.tiktok.com/@glanzwerk.glanzwe",
   ],
   description:
-    "MN GLANZWERK aus Bad Segeberg: professionelle Gebäudereinigung, Büroreinigung, Unterhaltsreinigung, Fensterreinigung, Grundreinigung sowie Umzugs- & Endreinigung in Schleswig-Holstein, Hamburg und Bremen – feste Ansprechpartner, faire Festpreise, Notdienst 24/7.",
+    "MN GLANZWERK aus Bad Segeberg: professionelle Gebäudereinigung, Büroreinigung, Unterhaltsreinigung, Fensterreinigung, Grundreinigung, Umzugs- & Endreinigung sowie Autoreinigung in Schleswig-Holstein, Hamburg und Bremen – feste Ansprechpartner, faire Festpreise, Notdienst 24/7.",
 };
 
 export const cities = [
@@ -48,7 +48,7 @@ export const cities = [
 export const faqs = [
   {
     q: "Welche Reinigungsleistungen bietet MN GLANZWERK an?",
-    a: "Wir bieten Gebäudereinigung, Büro- und Firmenreinigung, Unterhaltsreinigung, Grundreinigung, Fensterreinigung, Umzugs- und Endreinigung, Teppich- und Polsterreinigung, Hotel- und Objektservice, Praxis- und Hygienereinigung sowie die Reinigung von Kitas und Schulen an.",
+    a: "Wir bieten Gebäudereinigung, Büro- und Firmenreinigung, Unterhaltsreinigung, Grundreinigung, Fensterreinigung, Umzugs- und Endreinigung, Teppich- und Polsterreinigung, Hotel- und Objektservice, Praxis- und Hygienereinigung, die Reinigung von Kitas und Schulen sowie Autoreinigung innen und außen für Privat- und Geschäftskunden (inklusive Firmenflotten) an.",
   },
   {
     q: "In welchen Regionen ist MN GLANZWERK tätig?",

@@ -27,6 +27,7 @@ export default function ContactForm() {
       "Hotelreinigung",
       "Krankenhaus- / Praxisreinigung",
       "Kindergarten & Schulen",
+      "Autoreinigung (Privat & Firmenflotte)",
       "Sonstiges",
     ],
     []
