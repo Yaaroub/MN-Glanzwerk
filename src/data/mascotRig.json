@@ -1,0 +1,79 @@
+{
+  "phone": {
+    "w": 409,
+    "h": 720,
+    "base": "/mn/rig/phone-base.webp",
+    "parts": {
+      "arm": {
+        "src": "/mn/rig/phone-arm.webp",
+        "origin": "15.65% 48.89%"
+      }
+    }
+  },
+  "thumbs": {
+    "w": 329,
+    "h": 720,
+    "base": "/mn/rig/thumbs-base.webp",
+    "parts": {
+      "arm": {
+        "src": "/mn/rig/thumbs-arm.webp",
+        "origin": "20.06% 44.17%"
+      }
+    }
+  },
+  "point": {
+    "w": 388,
+    "h": 720,
+    "base": "/mn/rig/point-base.webp",
+    "parts": {
+      "arm": {
+        "src": "/mn/rig/point-arm.webp",
+        "origin": "34.02% 41.11%"
+      }
+    }
+  },
+  "pointR": {
+    "w": 388,
+    "h": 720,
+    "base": "/mn/rig/pointR-base.webp",
+    "parts": {
+      "arm": {
+        "src": "/mn/rig/pointR-arm.webp",
+        "origin": "65.98% 41.11%"
+      }
+    }
+  },
+  "mop": {
+    "w": 387,
+    "h": 720,
+    "base": "/mn/rig/mop-base.webp",
+    "parts": {
+      "mop": {
+        "src": "/mn/rig/mop-mop.webp",
+        "origin": "16.02% 35.83%"
+      }
+    }
+  },
+  "vacuum": {
+    "w": 525,
+    "h": 720,
+    "base": "/mn/rig/vacuum-base.webp",
+    "parts": {
+      "nozzle": {
+        "src": "/mn/rig/vacuum-nozzle.webp",
+        "origin": "63.24% 59.72%"
+      }
+    }
+  },
+  "hero": {
+    "w": 400,
+    "h": 720,
+    "base": "/mn/rig/hero-base.webp",
+    "parts": {
+      "head": {
+        "src": "/mn/rig/hero-head.webp",
+        "origin": "43.00% 24.72%"
+      }
+    }
+  }
+}

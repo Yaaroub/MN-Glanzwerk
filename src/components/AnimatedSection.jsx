@@ -1,42 +1,46 @@
 // src/components/AnimatedSection.jsx
+// Leichtgewichtiges Scroll-Reveal (IntersectionObserver + CSS) – ersetzt framer-motion.
 "use client";
 
-import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-export default function AnimatedSection({ children, delay = 0, className = "" }) {
+export default function AnimatedSection({
+  children,
+  delay = 0,
+  className = "",
+  as: Tag = "section",
+  ...rest
+}) {
   const ref = useRef(null);
-  const controls = useAnimation();
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
+    const el = ref.current;
+    if (!el) return;
+    if (!("IntersectionObserver" in window)) {
+      el.classList.add("is-visible");
+      return;
     }
-  }, [isInView, controls]);
-
-  const variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut",
-        delay,
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+          io.disconnect();
+        }
       },
-    },
-  };
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <motion.section
+    <Tag
+      {...rest}
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={variants}
-      className={className}
+      className={`reveal ${className}`}
+      style={delay ? { transitionDelay: `${delay}s` } : undefined}
     >
       {children}
-    </motion.section>
+    </Tag>
   );
 }

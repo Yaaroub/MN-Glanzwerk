@@ -2,14 +2,15 @@
 import AnimatedSection from "@/src/components/AnimatedSection";
 
 export const metadata = {
-  title: "Impressum – MN GLANZWERK",
+  title: "Impressum",
   description:
     "Impressum der MN GLANZWERK – Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG) und § 18 Medienstaatsvertrag (MStV).",
+  alternates: { canonical: "/impressum" },
 };
 
 export default function ImpressumPage() {
   return (
-    <div className="space-y-10 md:space-y-12">
+    <div className="mx-auto max-w-6xl space-y-10 px-4 pt-32 sm:px-6 md:space-y-12 md:pt-36">
       {/* Header */}
       <AnimatedSection>
         <section className="max-w-3xl space-y-4">

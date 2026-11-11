@@ -10,32 +10,623 @@
   --color-foreground: var(--foreground);
 
   /* MN Glanzwerk Brand-Farben */
-  --color-brand: #114c68;         /* Hauptblau */
-  --color-brand-soft: #2a6f94;    /* etwas heller */
-  --color-brand-accent: #38bdf8;  /* Glanz */
+  --color-brand: #114c68; /* Hauptblau */
+  --color-brand-soft: #2a6f94; /* etwas heller */
+  --color-brand-accent: #38bdf8; /* Glanz */
+  --color-brand-deep: #0b2a3c; /* Tiefblau */
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
-/* --- Hero Background Slow Zoom & Pan --- */
-@keyframes heroZoomPan {
-  0% {
-    transform: scale(1) translate(0px, 0px);
+
+::selection {
+  background: #38bdf8;
+  color: #0b2a3c;
+}
+
+@layer components {
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-brand-soft);
   }
-  50% {
-    transform: scale(1.07) translate(10px, -10px);
+  .eyebrow::before {
+    content: "";
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
   }
-  100% {
-    transform: scale(1) translate(0px, 0px);
+  .eyebrow-dark {
+    color: #7dd3fc;
+  }
+  .h2 {
+    font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+  }
+  .text-gradient {
+    background: linear-gradient(90deg, var(--color-brand), #0ea5e9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 
+/* ============ Scroll-Reveal ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Kinder gestaffelt einblenden */
+.reveal .stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible .stagger > * {
+  opacity: 1;
+  transform: none;
+}
+.reveal.is-visible .stagger > *:nth-child(2) { transition-delay: 0.06s; }
+.reveal.is-visible .stagger > *:nth-child(3) { transition-delay: 0.12s; }
+.reveal.is-visible .stagger > *:nth-child(4) { transition-delay: 0.18s; }
+.reveal.is-visible .stagger > *:nth-child(5) { transition-delay: 0.24s; }
+.reveal.is-visible .stagger > *:nth-child(6) { transition-delay: 0.3s; }
+.reveal.is-visible .stagger > *:nth-child(7) { transition-delay: 0.36s; }
+.reveal.is-visible .stagger > *:nth-child(8) { transition-delay: 0.42s; }
+
+/* ============ Hero ============ */
+@keyframes heroZoomPan {
+  0%, 100% { transform: scale(1.02) translate(0, 0); }
+  50% { transform: scale(1.09) translate(12px, -10px); }
+}
 .hero-zoom-pan {
-  animation: heroZoomPan 18s ease-in-out infinite;
+  animation: heroZoomPan 22s ease-in-out infinite;
   will-change: transform;
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(22px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+.hero-in {
+  animation: heroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* H1 = LCP-Element: nie unsichtbar, nur sanft hereingleiten */
+@keyframes heroRise {
+  from { transform: translateY(18px); }
+  to { transform: none; }
+}
+.hero-rise {
+  animation: heroRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Glanz-Sweep über Text */
+@keyframes shine {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.text-shine {
+  background: linear-gradient(
+    110deg,
+    #7dd3fc 0%,
+    #7dd3fc 40%,
+    #ffffff 50%,
+    #7dd3fc 60%,
+    #7dd3fc 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+/* Aufsteigende Seifenblasen */
+@keyframes bubble {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+}
+.bubble {
+  position: absolute;
+  bottom: -40px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(186, 230, 253, 0.25) 45%, rgba(56, 189, 248, 0.08) 70%);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5);
+  animation: bubble linear infinite;
+  pointer-events: none;
+}
+
+/* Funkel-Sterne */
+@keyframes twinkle {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1) rotate(90deg); opacity: 1; }
+}
+.twinkle {
+  position: absolute;
+  animation: twinkle 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Weiche, schwebende Licht-Blobs */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.1); }
+  66% { transform: translate(-25px, 20px) scale(0.95); }
+}
+.blob {
+  animation: blob 14s ease-in-out infinite;
+}
+
+/* Laufband (Einsatzgebiete) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee-wrap:hover .marquee {
+  animation-play-state: paused;
+}
+
+/* Sanftes Schweben (Maskottchen) */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+/* Glanz-Streifen über Karten beim Hover */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after {
+  transform: translateX(120%);
+}
+
+/* Schwebende Info-Karten im Hero */
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+.chip-float {
+  animation: chipIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both, chipFloat 6s ease-in-out infinite;
+}
+@keyframes chipIn {
+  from { opacity: 0; scale: 0.6; }
+  to { opacity: 1; scale: 1; }
+}
+
+/* Leuchtender Button-Rand */
+.btn-glow {
+  position: relative;
+}
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--a, 0deg), #38bdf8, transparent 30%, transparent 70%, #38bdf8);
+  z-index: -1;
+  animation: glowSpin 3s linear infinite;
+  filter: blur(4px);
+}
+@property --a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes glowSpin {
+  to { --a: 360deg; }
+}
+
+/* Prozess-Linie zeichnet sich */
+.draw-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+.reveal.is-visible .draw-line {
+  transform: scaleX(1);
+}
+
+/* ============ Maskottchen-Motion ============ */
+.mascot-pop {
+  opacity: 0;
+  transform: translateY(60px) scale(0.7) rotate(-6deg);
+  transform-origin: 50% 100%;
+}
+.mascot.is-in .mascot-pop {
+  animation: mascotPop 1s cubic-bezier(0.34, 1.56, 0.64, 1) var(--m-delay, 0s) forwards;
+}
+@keyframes mascotPop {
+  0% { opacity: 0; transform: translateY(60px) scale(0.7) rotate(-6deg); }
+  60% { opacity: 1; transform: translateY(-12px) scale(1.04) rotate(2deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Schweben + Atmen + leichtes Wippen um die Füße */
+.mascot-idle {
+  transform-origin: 50% 100%;
+  animation: mascotIdle 4.6s ease-in-out infinite;
+}
+@keyframes mascotIdle {
+  0%, 100% { transform: translateY(0) rotate(0deg) scaleY(1); }
+  25% { transform: translateY(-6px) rotate(-1.5deg) scaleY(1.012); }
+  50% { transform: translateY(-12px) rotate(0deg) scaleY(1.02); }
+  75% { transform: translateY(-6px) rotate(1.5deg) scaleY(1.012); }
+}
+
+/* Schatten wächst/schrumpft mit dem Schweben */
+.mascot-shadow {
+  animation: mascotShadow 4.6s ease-in-out infinite;
+}
+@keyframes mascotShadow {
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.9; }
+  50% { transform: translateX(-50%) scaleX(0.78); opacity: 0.55; }
+}
+
+.mascot-halo {
+  opacity: 0;
+  transition: opacity 1.2s ease 0.2s;
+  animation: haloPulse 5s ease-in-out infinite;
+}
+.mascot.is-in .mascot-halo { opacity: 1; }
+@keyframes haloPulse {
+  0%, 100% { scale: 1; }
+  50% { scale: 1.08; }
+}
+.mascot-ring {
+  animation: spin 40s linear infinite;
+}
+@keyframes spin {
+  to { rotate: 360deg; }
+}
+
+.mascot-spark {
+  animation: twinkle 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.mascot-bubble {
+  position: absolute;
+  bottom: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(186, 230, 253, 0.35) 45%, rgba(56, 189, 248, 0.1) 70%);
+  animation: mascotBubble linear infinite;
+}
+@keyframes mascotBubble {
+  0% { transform: translateY(0) scale(0.4); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 0.8; }
+  100% { transform: translateY(-260px) translateX(14px) scale(1); opacity: 0; }
+}
+
+/* Sprechblase ploppt auf und wiederholt sich */
+.mascot-speech {
+  opacity: 0;
+  transform: scale(0.4) translateY(10px);
+}
+.mascot.is-in .mascot-speech {
+  animation: speech 7s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--m-delay, 0s) + 1s) infinite;
+}
+.mascot:hover .mascot-speech {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+@keyframes speech {
+  0% { opacity: 0; transform: scale(0.4) translateY(10px); }
+  8%, 70% { opacity: 1; transform: none; }
+  78%, 100% { opacity: 0; transform: scale(0.85) translateY(-6px); }
+}
+
+/* ============ Figuren-Rig: echte Bewegungen ============ */
+.mascot:not(.is-on) .rig-part,
+.mascot:not(.is-on) .rig-part *,
+.mascot:not(.is-on) [class*="rig-"] {
+  animation-play-state: paused;
+}
+
+/* Blinzeln (alle Figuren) */
+.rig-blink {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  transform: scaleY(0);
+  animation: rigBlink 4.6s ease-in-out infinite;
+}
+@keyframes rigBlink {
+  0%, 90%, 100% { transform: scaleY(0); }
+  93%, 95% { transform: scaleY(1); }
+}
+
+/* --- Handy-Figur: Nummer tippen, Anruf, ans Ohr (9 s) --- */
+.rig-phone-arm {
+  animation: phoneArm 9s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+@keyframes phoneArm {
+  0%, 6% { transform: rotate(0deg); }
+  12%, 20%, 28%, 36% { transform: rotate(-1.5deg); }
+  16%, 24%, 32%, 42% { transform: rotate(0.5deg); }
+  46% { transform: rotate(0deg); }
+  54% { transform: rotate(15deg); }
+  56%, 84% { transform: rotate(14deg); }
+  60%, 68%, 76% { transform: rotate(13deg); }
+  92%, 100% { transform: rotate(0deg); }
+}
+.rig-screen {
+  opacity: 0;
+  animation: phoneScreen 9s linear infinite;
+}
+@keyframes phoneScreen {
+  0%, 5% { opacity: 0; }
+  7%, 88% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+.rig-type {
+  clip-path: inset(0 100% 0 0);
+}
+.rig-type-1 { animation: type1 9s steps(4, end) infinite; }
+.rig-type-2 { animation: type2 9s steps(7, end) infinite; }
+@keyframes type1 {
+  0%, 9% { clip-path: inset(0 100% 0 0); }
+  19%, 100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes type2 {
+  0%, 21% { clip-path: inset(0 100% 0 0); }
+  38%, 100% { clip-path: inset(0 0 0 0); }
+}
+.rig-keys { animation: phoneKeys 9s linear infinite; }
+@keyframes phoneKeys {
+  0%, 40% { opacity: 1; }
+  42%, 100% { opacity: 0; }
+}
+.rig-keys > span { animation: keyPress 1.2s ease-in-out infinite; }
+@keyframes keyPress {
+  0%, 70%, 100% { background: rgba(17, 76, 104, 0.25); }
+  80% { background: #114c68; }
+}
+.rig-callbtn {
+  opacity: 0;
+  scale: 0.4;
+  animation: callBtn 9s ease-out infinite;
+}
+@keyframes callBtn {
+  0%, 40% { opacity: 0; scale: 0.4; }
+  43% { opacity: 1; scale: 1.15; }
+  45%, 47%, 49% { scale: 1; }
+  46%, 48% { scale: 1.12; }
+  50%, 88% { opacity: 1; scale: 1; }
+  91%, 100% { opacity: 0; scale: 0.4; }
+}
+.rig-tap {
+  opacity: 0;
+  animation: tapWindow 9s linear infinite;
+}
+@keyframes tapWindow {
+  0%, 8%, 39%, 100% { opacity: 0; }
+  10%, 13%, 16%, 19%, 22%, 25%, 28%, 31%, 34%, 37% { opacity: 0.9; translate: 0 0; }
+  11.5%, 14.5%, 17.5%, 20.5%, 23.5%, 26.5%, 29.5%, 32.5%, 35.5% { opacity: 0; translate: 10% -14%; }
+}
+.rig-waves {
+  opacity: 0;
+  animation: waves 9s ease-out infinite;
+}
+.rig-waves path { animation: wavePulse 0.9s ease-out infinite; }
+.rig-waves path:nth-child(2) { animation-delay: 0.15s; }
+.rig-waves path:nth-child(3) { animation-delay: 0.3s; }
+@keyframes waves {
+  0%, 55% { opacity: 0; }
+  58%, 84% { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
+@keyframes wavePulse {
+  0% { opacity: 0.2; }
+  40% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/* Sprechblase der Handy-Figur, synchron zum Anruf */
+.call-bubble { opacity: 0; animation: callBubble 9s ease-out infinite; }
+@keyframes callBubble {
+  0%, 6% { opacity: 0; transform: scale(0.5) translateY(8px); }
+  9%, 88% { opacity: 1; transform: none; }
+  92%, 100% { opacity: 0; transform: scale(0.85); }
+}
+.call-line { opacity: 0; }
+.call-line-1 { animation: callLine1 9s linear infinite; }
+.call-line-2 { animation: callLine2 9s linear infinite; }
+.call-line-3 { animation: callLine3 9s linear infinite; }
+@keyframes callLine1 { 0%, 7% { opacity: 0; } 8%, 44% { opacity: 1; } 46%, 100% { opacity: 0; } }
+@keyframes callLine2 { 0%, 45% { opacity: 0; } 46%, 63% { opacity: 1; } 65%, 100% { opacity: 0; } }
+@keyframes callLine3 { 0%, 64% { opacity: 0; } 65%, 88% { opacity: 1; } 90%, 100% { opacity: 0; } }
+.call-digits {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: 0;
+  animation: callDigits 9s steps(13, end) infinite;
+}
+@keyframes callDigits {
+  0%, 9% { width: 0; }
+  38%, 100% { width: 13ch; }
+}
+
+/* --- Daumen hoch + Sprühflasche --- */
+.rig-thumbs-arm { animation: thumbsArm 3.6s ease-in-out infinite; }
+@keyframes thumbsArm {
+  0%, 40%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(-11deg); }
+  18% { transform: rotate(3deg); }
+  26% { transform: rotate(-8deg); }
+  34% { transform: rotate(1deg); }
+}
+.rig-mist {
+  left: 0;
+  top: 0;
+  opacity: 0;
+  animation: mist 3.6s ease-out infinite;
+}
+@keyframes mist {
+  0%, 55% { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  58% { opacity: 1; }
+  75%, 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.6); }
+}
+
+/* --- Zeigen (tippt zweimal in Zeigerichtung) --- */
+.rig-point-arm { animation: pointArm 3.2s ease-in-out infinite; }
+@keyframes pointArm {
+  0%, 45%, 100% { transform: rotate(0deg); }
+  8% { transform: rotate(-7deg) translateX(-2%); }
+  16% { transform: rotate(1deg); }
+  24% { transform: rotate(-7deg) translateX(-2%); }
+  32% { transform: rotate(0deg); }
+}
+
+/* gespiegelte Zeige-Figur: gleiche Bewegung nach rechts */
+.rig-pointR-arm { animation: pointArmR 3.2s ease-in-out infinite; }
+@keyframes pointArmR {
+  0%, 45%, 100% { transform: rotate(0deg); }
+  8% { transform: rotate(7deg) translateX(2%); }
+  16% { transform: rotate(-1deg); }
+  24% { transform: rotate(7deg) translateX(2%); }
+  32% { transform: rotate(0deg); }
+}
+
+/* --- Wischmopp wischt hin und her --- */
+.rig-mop-mop { animation: mopSwing 2.4s ease-in-out infinite alternate; }
+@keyframes mopSwing {
+  from { transform: rotate(-5deg); }
+  to { transform: rotate(5deg); }
+}
+.rig-wet {
+  opacity: 0.6;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wetShine 2.4s ease-in-out infinite alternate;
+}
+@keyframes wetShine {
+  from { opacity: 0.25; transform: scaleX(0.7) translateX(-12%); }
+  to { opacity: 0.7; transform: scaleX(1.05) translateX(10%); }
+}
+.rig-glint {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation: glint 1.8s ease-in-out infinite;
+}
+@keyframes glint {
+  0%, 60%, 100% { transform: scale(0) rotate(0deg); }
+  75% { transform: scale(1) rotate(45deg); }
+}
+
+/* --- Staubsauger: Düse saugt hin und her --- */
+.rig-vacuum-nozzle { animation: nozzle 1.5s ease-in-out infinite alternate; }
+@keyframes nozzle {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(5deg); }
+}
+.rig-dust {
+  left: 0;
+  top: 0;
+  opacity: 0;
+  animation: dust 1.4s ease-in infinite;
+}
+@keyframes dust {
+  0% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.2); }
+  20% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(0, 0) scale(0.2); }
+}
+
+/* --- Hauptfigur: Kopf neigen + Schaum aus dem Eimer --- */
+.rig-hero-head { animation: heroHead 6.5s ease-in-out infinite; }
+@keyframes heroHead {
+  0%, 100% { transform: rotate(0deg); }
+  14% { transform: rotate(4deg); }
+  30% { transform: rotate(0deg); }
+  44% { transform: rotate(-3deg); }
+  56% { transform: rotate(0deg); }
+  64% { transform: rotate(0deg) translateY(1%); }
+  70% { transform: rotate(0deg); }
+  76% { transform: rotate(0deg) translateY(1%); }
+  82% { transform: rotate(0deg); }
+}
+.rig-foam {
+  opacity: 0;
+  animation: foam 2.8s ease-out infinite;
+}
+@keyframes foam {
+  0% { opacity: 0; transform: translateY(0) scale(0.3); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-260%) translateX(40%) scale(1.2); }
+}
+
+/* Lightbox-Bildwechsel */
+.lightbox-in {
+  animation: lightboxIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes lightboxIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Barrierefreiheit: weniger Bewegung respektieren */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal, .reveal .stagger > *, .hero-in { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .bubble, .twinkle, .mascot-bubble, .mascot-spark { display: none; }
+  .mascot-pop, .mascot-speech, .mascot-halo { opacity: 1 !important; transform: none !important; }
 }

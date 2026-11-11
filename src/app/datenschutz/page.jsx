@@ -2,14 +2,15 @@
 import AnimatedSection from "@/src/components/AnimatedSection";
 
 export const metadata = {
-  title: "Datenschutzerklärung – MN GLANZWERK",
+  title: "Datenschutzerklärung",
   description:
     "Datenschutzerklärung der MN GLANZWERK gemäß DSGVO.",
+  alternates: { canonical: "/datenschutz" },
 };
 
 export default function DatenschutzPage() {
   return (
-    <div className="space-y-10 md:space-y-12">
+    <div className="mx-auto max-w-6xl space-y-10 px-4 pt-32 sm:px-6 md:space-y-12 md:pt-36">
       {/* Kopf */}
       <AnimatedSection>
         <section className="max-w-3xl space-y-4">

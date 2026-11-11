@@ -1,198 +1,144 @@
-import Image from "next/image";
+// src/app/about/page.jsx
+import Link from "next/link";
+import { Gem, Handshake, ShieldCheck, Shuffle, Eye, Home, Briefcase, Hospital, ArrowRight, Phone } from "lucide-react";
 import AnimatedSection from "@/src/components/AnimatedSection";
+import PageHero from "@/src/components/PageHero";
+import Mascot from "@/src/components/Mascot";
+import StatsSection from "@/src/components/StatsSection";
+import { site } from "@/src/lib/site";
 
 export const metadata = {
-  title: "Über uns – MN GLANZWERK CLEANING COMPANY",
+  title: "Über uns – Ihre Reinigungsfirma aus Bad Segeberg",
   description:
-    "Erfahren Sie mehr über MN GLANZWERK CLEANING COMPANY – professionelle Reinigungsdienste mit über 10 Jahren Erfahrung.",
+    "Lernen Sie MN GLANZWERK kennen: Reinigungsfirma aus Bad Segeberg mit über 10 Jahren Erfahrung in Gebäude-, Büro- und Unterhaltsreinigung in Schleswig-Holstein, Hamburg & Bremen.",
+  alternates: { canonical: "/about" },
 };
+
+const values = [
+  { icon: Gem, t: "Qualität", d: "Sorgfalt und Perfektion bis ins Detail." },
+  { icon: Handshake, t: "Zuverlässigkeit", d: "Termine und Zusagen zählen – immer." },
+  { icon: ShieldCheck, t: "Vertrauen", d: "Diskret, respektvoll und professionell." },
+  { icon: Shuffle, t: "Flexibilität", d: "Lösungen für jedes Objekt und jede Zeit." },
+  { icon: Eye, t: "Transparenz", d: "Faire Festpreise ohne Überraschungen." },
+];
+
+const clients = [
+  { icon: Home, t: "Privathaushalte", d: "Wohnungen, Häuser & Treppenhäuser – regelmäßig oder einmalig." },
+  { icon: Briefcase, t: "Unternehmen", d: "Büros, Kanzleien, Shops, Studios & Gewerbeflächen." },
+  { icon: Hospital, t: "Einrichtungen", d: "Hotels, Praxen, Kliniken, Schulen & Kitas." },
+];
 
 export default function AboutPage() {
   return (
-    <div className="space-y-16 md:space-y-20">
+    <>
+      <PageHero
+        path="/about"
+        crumb="Über uns"
+        eyebrow="Über MN GLANZWERK"
+        title="Wer wir sind."
+        intro="MN GLANZWERK ist Ihr Partner für hochwertige Gebäudereinigung mit Sitz in Bad Segeberg. Wir betreuen Privat- und Geschäftskunden in ganz Schleswig-Holstein, Hamburg und Bremen – und übernehmen auf Wunsch auch deutschlandweite Projekte."
+        fig="vacuum"
+        speech="Schön, dass du da bist!"
+      />
 
-      {/* INTRO */}
-      <AnimatedSection>
-        <section className="max-w-4xl space-y-5">
-          <p className="inline-flex items-center rounded-full bg-brand/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.20em] text-brand">
-            Über uns
-          </p>
-
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
-            Wer wir sind
-          </h1>
-
-          <p className="text-base text-slate-600 leading-relaxed">
-            <strong>MN GLANZWERK</strong> ist Ihr professioneller Partner für
-            hochwertige Gebäudereinigung mit Sitz in Bad Segeberg. Wir betreuen
-            Privat- und Geschäftskunden in ganz Schleswig-Holstein, Hamburg und
-            Bremen – und übernehmen auf Wunsch auch deutschlandweite Projekte.
-          </p>
-
-          <p className="text-base text-slate-600 leading-relaxed">
-            Unser Anspruch: höchste Qualität, Zuverlässigkeit und Vertrauen.
-            Unser Team arbeitet mit modernen Reinigungsmitteln,
-            professioneller Ausrüstung und echtem Verantwortungsbewusstsein.
-          </p>
-        </section>
-      </AnimatedSection>
-
-      {/* MISSION & WERTE */}
-      <AnimatedSection delay={0.2}>
-        <section className="grid gap-10 md:grid-cols-2 items-start">
-
-          <div className="space-y-5">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
-              Unsere Mission
+      <div className="mx-auto max-w-6xl space-y-24 px-4 pt-16 sm:px-6 md:space-y-28 md:pt-20">
+        {/* Mission */}
+        <AnimatedSection className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="eyebrow">Unsere Mission</p>
+            <h2 className="h2">
+              Sauberkeit ist für uns <span className="text-gradient">ein Versprechen.</span>
             </h2>
-
-            <p className="text-base text-slate-600 leading-relaxed">
-              Sauberkeit ist für uns mehr als eine Dienstleistung – sie ist ein
-              Versprechen. Wir wollen, dass Sie und Ihre Kunden sich in Ihren
-              Räumen wohlfühlen. Jede Reinigung wird individuell geplant und so
-              durchgeführt, als wäre es unser eigenes Objekt.
+            <p className="mt-5 text-base leading-relaxed text-slate-600">
+              Wir wollen, dass Sie und Ihre Kunden sich in Ihren Räumen wohlfühlen. Jede
+              Reinigung wird individuell geplant und so durchgeführt, als wäre es unser
+              eigenes Objekt.
             </p>
-
-            <p className="text-base text-slate-600 leading-relaxed">
-              Ob regelmäßige Unterhaltsreinigung oder einmalige Grundreinigung –
-              wir setzen auf langfristige Zusammenarbeit, offene Kommunikation
-              und faire Beratung.
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              Ob regelmäßige Unterhaltsreinigung oder einmalige Grundreinigung – wir setzen
+              auf langfristige Zusammenarbeit, offene Kommunikation und faire Beratung.
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white/90 backdrop-blur border border-slate-200 shadow-sm p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-slate-900">Unsere Werte</h3>
+          <div className="relative mx-auto w-full max-w-sm">
+            <div aria-hidden="true" className="absolute inset-4 rotate-3 rounded-[2.5rem] bg-gradient-to-br from-brand to-brand-deep" />
+            <div className="relative flex items-end justify-center gap-2 rounded-[2.5rem] px-6 pt-8">
+              <div className="w-36"><Mascot fig="mop" dark speech="Mit Liebe geputzt" speechSide="right" alt="" sizes="144px" /></div>
+              <div className="w-32"><Mascot fig="thumbs" dark alt="" sizes="128px" delay={0.3} /></div>
+            </div>
+          </div>
+        </AnimatedSection>
 
-            <ul className="space-y-2 text-sm text-slate-700">
-              <li>• <span className="font-semibold">Qualität:</span> Sorgfalt und Perfektion im Detail.</li>
-              <li>• <span className="font-semibold">Zuverlässigkeit:</span> Termine & Zusagen zählen.</li>
-              <li>• <span className="font-semibold">Vertrauen:</span> Diskret, respektvoll, professionell.</li>
-              <li>• <span className="font-semibold">Flexibilität:</span> Lösungen für jede Umgebung.</li>
-              <li>• <span className="font-semibold">Transparenz:</span> Faire Preise ohne Überraschungen.</li>
+        {/* Werte */}
+        <AnimatedSection>
+          <p className="eyebrow">Unsere Werte</p>
+          <h2 className="h2">Worauf Sie sich verlassen können</h2>
+          <ul className="stagger mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {values.map(({ icon: Icon, t, d }) => (
+              <li key={t} className="card-shine group rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand/25 hover:shadow-xl">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-50 text-brand transition group-hover:rotate-6 group-hover:bg-brand group-hover:text-white">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 font-bold text-slate-900">{t}</h3>
+                <p className="mt-1 text-sm text-slate-600">{d}</p>
+              </li>
+            ))}
+          </ul>
+        </AnimatedSection>
+
+        {/* Für wen */}
+        <AnimatedSection className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand to-brand-deep px-6 py-12 text-white md:px-12">
+          <div aria-hidden="true" className="blob absolute -left-16 -top-16 h-72 w-72 rounded-full bg-sky-400/25 blur-3xl" />
+          <div className="relative">
+            <p className="eyebrow eyebrow-dark">Für wen wir arbeiten</p>
+            <h2 className="h2 max-w-2xl text-white">Vom Privathaushalt bis zur Klinik.</h2>
+            <p className="mt-4 max-w-2xl text-sky-100">
+              Für jedes Objekt entwickeln wir ein maßgeschneidertes Reinigungskonzept –
+              abgestimmt auf Nutzung, Zeiten und Hygieneanforderungen.
+            </p>
+            <ul className="stagger mt-8 grid gap-4 md:grid-cols-3">
+              {clients.map(({ icon: Icon, t, d }) => (
+                <li key={t} className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur transition hover:-translate-y-1 hover:bg-white/15">
+                  <Icon className="h-7 w-7 text-sky-300" aria-hidden="true" />
+                  <h3 className="mt-4 text-lg font-bold">{t}</h3>
+                  <p className="mt-1 text-sm text-sky-100/90">{d}</p>
+                </li>
+              ))}
             </ul>
           </div>
+        </AnimatedSection>
 
-        </section>
-      </AnimatedSection>
-
-      {/* WEN WIR BETREUEN */}
-      <AnimatedSection delay={0.3}>
-        <section className="space-y-5">
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
-            Für wen wir arbeiten
-          </h2>
-
-          <p className="text-base text-slate-600 max-w-3xl leading-relaxed">
-            Unsere Kunden sind vielfältig – von Privathaushalten über kleine und
-            mittelständische Unternehmen bis hin zu Hotels, Praxen und
-            Bildungseinrichtungen. Für jedes Objekt entwickeln wir ein
-            maßgeschneidertes Reinigungskonzept.
-          </p>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "Privathaushalte",
-                desc: "Wohnungen, Häuser & Treppenhäuser.",
-              },
-              {
-                title: "Unternehmen",
-                desc: "Büros, Kanzleien, Shops, Studios & Praxen.",
-              },
-              {
-                title: "Einrichtungen",
-                desc: "Hotels, Schulen, Kitas, Kliniken.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl bg-white/90 backdrop-blur border border-slate-200 shadow-sm p-5 space-y-1"
-              >
-                <h3 className="text-base font-semibold text-slate-900">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* ERFAHRUNG */}
-      <AnimatedSection delay={0.4}>
-        <section className="grid gap-10 md:grid-cols-[1.4fr,1fr] items-start">
-
-          <div className="space-y-5">
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
-              Mehr als 10 Jahre Erfahrung
-            </h2>
-
-            <p className="text-base text-slate-600 leading-relaxed">
-              Seit über einem Jahrzehnt sind wir in der professionellen
-              Gebäudereinigung aktiv – mit vielen Stammkunden, Notfall-Einsätzen
-              und langfristigen Objektbetreuungen.
-            </p>
-
-            <p className="text-base text-slate-600 leading-relaxed">
-              Unser Fokus liegt auf Schleswig-Holstein, Hamburg und Bremen, doch
-              für ausgewählte Projekte sind wir auch bundesweit im Einsatz.
+        {/* Erfahrung + Zahlen */}
+        <AnimatedSection className="space-y-10">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Erfahrung</p>
+            <h2 className="h2">Mehr als 10 Jahre in der Gebäudereinigung</h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              Seit über einem Jahrzehnt sind wir in der professionellen Gebäudereinigung
+              aktiv – mit vielen Stammkunden, Notfall-Einsätzen und langfristigen
+              Objektbetreuungen. Unser Fokus liegt auf Schleswig-Holstein, Hamburg und
+              Bremen; für ausgewählte Projekte sind wir bundesweit im Einsatz.
             </p>
           </div>
+          <StatsSection />
+        </AnimatedSection>
 
-          {/* FIGUR + KARTE */}
-          <div className="relative">
-            {/* Mobile Image */}
-            <div className="flex justify-center md:hidden mb-4">
-              <Image
-                src="/mn/services-vacuum.webp"
-                alt="MN Glanzwerk – Staubsauger"
-                width={260}
-                height={260}
-                className="w-24 h-auto drop-shadow-lg"
-              />
-            </div>
-
-            {/* Kontaktkarte */}
-            <div className="rounded-2xl bg-brand/95 text-slate-50 p-6 shadow-lg space-y-4">
-              <h3 className="text-lg font-semibold">Ihr direkter Draht zu uns</h3>
-
-              <p className="text-sm text-slate-100">
-                Sie möchten mehr über uns erfahren oder ein Gespräch vereinbaren?
-                Wir freuen uns auf Ihre Anfrage.
-              </p>
-
-              <div className="space-y-1 text-sm">
-                <p className="font-medium">Telefon / WhatsApp</p>
-                <p className="text-slate-100">0163 7885512</p>
-              </div>
-
-              <div className="space-y-1 text-sm">
-                <p className="font-medium">Adresse</p>
-                <p className="text-slate-100">
-                  Kurhausstraße 46<br />23795 Bad Segeberg
-                </p>
-              </div>
-
-              <p className="text-xs text-slate-200">
-                Öffnungszeiten: Mo–Sa 08:00–20:00 Uhr · Notfälle 24/7 erreichbar
-              </p>
-            </div>
-
-            {/* Desktop Image */}
-            <div className="pointer-events-none absolute -top-8 -right-3 hidden md:block">
-              <Image
-                src="/mn/services-vacuum.webp"
-                alt="MN Glanzwerk – Staubsauger"
-                width={300}
-                height={300}
-                className="w-28 lg:w-36 h-auto drop-shadow-2xl"
-              />
-            </div>
+        {/* Kontakt */}
+        <AnimatedSection className="flex flex-col items-center justify-between gap-6 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-900/5 md:flex-row">
+          <div>
+            <h2 className="text-2xl font-extrabold text-slate-900">Lernen wir uns kennen.</h2>
+            <p className="mt-1 text-slate-600">Rufen Sie an oder schreiben Sie uns – wir freuen uns auf Ihre Anfrage.</p>
           </div>
-
-        </section>
-      </AnimatedSection>
-
-    </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a href={`tel:${site.phoneTel}`} className="inline-flex items-center justify-center gap-2 rounded-full border border-brand/25 px-6 py-3 text-sm font-semibold text-brand transition hover:bg-brand/5">
+              <Phone className="h-4 w-4" aria-hidden="true" /> {site.phoneDisplay}
+            </a>
+            <Link href="/contact" className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand/30 transition hover:bg-brand-soft">
+              Angebot anfordern <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+          </div>
+        </AnimatedSection>
+      </div>
+    </>
   );
 }

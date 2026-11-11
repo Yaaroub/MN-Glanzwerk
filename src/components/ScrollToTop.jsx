@@ -8,19 +8,9 @@ export default function ScrollToTop() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    // Scroll-Restore von Next/Browser ausschalten
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-
-    // Immer hart nach oben springen – kein smooth
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "auto",
-    });
+    // Anker-Links (z. B. /#leistungen) nicht überschreiben
+    if (window.location.hash) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname]);
 
   return null;

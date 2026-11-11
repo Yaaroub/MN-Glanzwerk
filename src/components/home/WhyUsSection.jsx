@@ -1,81 +1,53 @@
 // src/components/home/WhyUsSection.jsx
-import Image from "next/image";
-import { GhostTel, PrimaryLink } from "@/src/components/ui/ButtonLink";
+import { CheckCircle2 } from "lucide-react";
+import Mascot from "@/src/components/Mascot";
+import StatsSection from "@/src/components/StatsSection";
+
+const points = [
+  { t: "Persönliche Beratung", d: "Ein fester Ansprechpartner kennt Ihr Objekt und Ihre Wünsche." },
+  { t: "Geschultes, festes Team", d: "Keine ständig wechselnden Aushilfen – dieselben Gesichter, gleiche Qualität." },
+  { t: "Moderne Ausrüstung", d: "Professionelle Maschinen und materialschonende Reinigungsmittel." },
+  { t: "Flexible Zeiten", d: "Früh, abends oder am Wochenende – auch kurzfristig und im Notfall." },
+  { t: "Transparente Festpreise", d: "Klare Angebote ohne versteckte Kosten oder Überraschungen." },
+];
 
 export default function WhyUsSection() {
   return (
-    <section className="grid gap-8 md:grid-cols-[1.4fr,1fr] items-start">
-      <div className="space-y-4">
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
-          Warum MN GLANZWERK?
-        </h2>
-        <p className="text-sm text-slate-600 leading-relaxed">
-          Wir verbinden Erfahrung in der Gebäudereinigung mit modernen Methoden
-          und einem klaren Serviceprozess. Unser Ziel: dauerhaft saubere Objekte
-          und Kunden, die sich um nichts kümmern müssen.
-        </p>
-        <ul className="space-y-2 text-sm text-slate-700">
-          <li>• Persönliche Beratung und feste Ansprechpartner</li>
-          <li>• Qualifiziertes, zuverlässiges und freundliches Team</li>
-          <li>• Moderne Materialien &amp; professionelle Ausrüstung</li>
-          <li>• Flexible Terminvereinbarung – auch kurzfristig &amp; bei Notfällen</li>
-          <li>• Transparente Angebote ohne versteckte Kosten</li>
-        </ul>
-      </div>
-
-      <div className="relative space-y-4">
-        <div className="pointer-events-none absolute -top-10 -right-2 hidden md:block">
-          <div className="w-16 lg:w-20">
-            <Image
-              src="/mn/about-spray-thumbs-up.webp"
-              alt="Mitarbeiter von MN GLANZWERK"
-              width={300}
-              height={300}
-              className="h-auto w-full drop-shadow-lg"
-            />
+    <div className="space-y-12">
+      <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
+        <div className="relative order-2 mx-auto w-full max-w-sm lg:order-1">
+          <div aria-hidden="true" className="absolute inset-6 rounded-[2.5rem] bg-gradient-to-br from-sky-100 via-white to-brand/10 rotate-[-4deg]" />
+          <div className="relative grid grid-cols-2 items-end gap-2 px-4 pt-6">
+            <Mascot fig="thumbs" speech="Top Ergebnis! 👍" speechSide="right" alt="" sizes="180px" />
+            <Mascot fig="vacuum" alt="" sizes="200px" delay={0.25} className="-ml-4" />
           </div>
         </div>
 
-        <div className="flex justify-center md:hidden">
-          <div className="w-16">
-            <Image
-              src="/mn/about-spray-thumbs-up.webp"
-              alt="Mitarbeiter von MN GLANZWERK"
-              width={200}
-              height={200}
-              className="h-auto w-full drop-shadow-md"
-            />
-          </div>
-        </div>
-
-        <div className="rounded-2xl bg-brand/95 text-slate-50 p-6 space-y-4 shadow-lg">
-          <h3 className="text-lg font-semibold">Direkter Kontakt</h3>
-          <p className="text-sm text-slate-100 leading-relaxed">
-            Sie möchten ein Angebot oder haben Fragen zu einem konkreten Objekt?
-            Schreiben oder rufen Sie uns an – wir melden uns schnell und
-            unverbindlich.
+        <div className="order-1 lg:order-2">
+          <p className="eyebrow">Warum MN GLANZWERK?</p>
+          <h2 className="h2">
+            Sauberkeit mit System – <span className="text-gradient">und mit Herz.</span>
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-600">
+            Wir verbinden über zehn Jahre Erfahrung in der Gebäudereinigung mit modernen
+            Methoden und einem klaren Serviceprozess. Unser Ziel: dauerhaft saubere
+            Objekte und Kunden, die sich um nichts kümmern müssen.
           </p>
-
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div className="space-y-1">
-              <p className="font-medium">Telefon / WhatsApp</p>
-              <p className="text-slate-100">0163 7885512</p>
-            </div>
-            <div className="space-y-1">
-              <p className="font-medium">Adresse</p>
-              <p className="text-slate-100">
-                Kurhausstraße 46
-                <br />
-                23795 Bad Segeberg
-              </p>
-            </div>
-          </div>
-
-          <GhostTel href="/contact" className="bg-white text-brand hover:bg-slate-100">
-            Kontaktformular öffnen
-          </GhostTel>
+          <ul className="stagger mt-6 space-y-3">
+            {points.map((p) => (
+              <li key={p.t} className="flex gap-3 rounded-2xl border border-transparent p-2 transition hover:border-slate-200 hover:bg-white hover:shadow-sm">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" aria-hidden="true" />
+                <span>
+                  <span className="block font-semibold text-slate-900">{p.t}</span>
+                  <span className="block text-sm text-slate-600">{p.d}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </section>
+
+      <StatsSection />
+    </div>
   );
 }

@@ -1,89 +1,90 @@
 // src/components/StatsSection.jsx
 "use client";
 
-import { motion } from "framer-motion";
-import { Building2, Users2, ClipboardList } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Building2, Users2, ClipboardList, Clock } from "lucide-react";
 
 const stats = [
-  {
-    label: "Betreute Objekte",
-    value: "50+",
-    description: "Wohn- und Geschäftsräume in Schleswig-Holstein & Bremen.",
-    icon: Building2,
-  },
-  {
-    label: "Zufriedene Kunden",
-    value: "18+",
-    description: "Privat- und Geschäftskunden, die uns regelmäßig vertrauen.",
-    icon: Users2,
-  },
-  {
-    label: "Aktive Aufträge",
-    value: "12",
-    description: "Laufende Reinigungsaufträge im Dauer- oder Turnusservice.",
-    icon: ClipboardList,
-  },
+  { label: "Betreute Objekte", to: 50, suffix: "+", description: "Wohn- und Geschäftsräume in Schleswig-Holstein, Hamburg & Bremen.", icon: Building2 },
+  { label: "Zufriedene Stammkunden", to: 18, suffix: "+", description: "Privat- und Geschäftskunden, die uns regelmäßig vertrauen.", icon: Users2 },
+  { label: "Laufende Aufträge", to: 12, suffix: "", description: "Aktive Reinigungsaufträge im Dauer- oder Turnusservice.", icon: ClipboardList },
+  { label: "Notdienst", to: 24, suffix: "/7", description: "Wasserschaden, Übergabe, Event – wir sind schnell vor Ort.", icon: Clock },
 ];
 
-export default function StatsSection() {
+function Counter({ to, suffix, start }) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf;
+    const t0 = performance.now();
+    const dur = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 1400;
+    const tick = (t) => {
+      const p = Math.min((t - t0) / dur, 1);
+      setVal(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [start, to]);
   return (
-    <section className="rounded-3xl bg-white/90 backdrop-blur border border-slate-200 shadow-sm px-5 py-6 md:px-8 md:py-8">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+    <span className="tabular-nums">
+      {start ? val : to}
+      {suffix}
+    </span>
+  );
+}
+
+export default function StatsSection() {
+  const ref = useRef(null);
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        setStart(true);
+        io.disconnect();
+      }
+    }, { threshold: 0.3 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="rounded-3xl border border-slate-200 bg-white/90 px-5 py-7 shadow-sm backdrop-blur md:px-8 md:py-9">
+      <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 mb-3">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
-            Aktueller Überblick
-          </div>
-
-          <h2 className="text-xl md:text-2xl font-semibold text-slate-900">
-            Zahlen, Daten, Fakten
-          </h2>
-          <p className="text-sm text-slate-600">
-            Ein kurzer Überblick über unsere aktuellen Objekte und Kunden.
+            Zahlen &amp; Fakten
           </p>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
+            Sauberkeit, auf die man sich verlassen kann
+          </h2>
         </div>
-
-        <p className="text-xs md:text-sm text-slate-500">
-          * Werte können je nach Saison und Auftragseingang variieren.
-        </p>
+        <p className="text-xs text-slate-500">* Werte variieren je nach Saison und Auftragslage.</p>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-3">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <motion.div
-              key={stat.label}
-              className="group rounded-2xl border border-slate-100 bg-white/80 px-4 py-4 shadow-sm"
-              whileHover={{ y: -3 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex flex-col gap-1">
-                  <div className="text-3xl md:text-4xl font-bold tabular-nums text-slate-900">
-                    {stat.value}
-                  </div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    {stat.label}
-                  </p>
-                </div>
-
-                {Icon ? (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-sm transition group-hover:shadow-md">
-                    <Icon className="h-5 w-5 text-slate-700" />
-                  </div>
-                ) : null}
+      <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map(({ icon: Icon, ...s }) => (
+          <div
+            key={s.label}
+            className="card-shine group rounded-2xl border border-slate-100 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand/20 hover:shadow-lg"
+          >
+            <div className="flex items-start justify-between">
+              <div className="text-4xl font-extrabold text-brand">
+                <Counter to={s.to} suffix={s.suffix} start={start} />
               </div>
-
-              <div className="mt-3 h-px w-full bg-gradient-to-r from-slate-100 via-slate-200 to-slate-100" />
-
-              <p className="mt-3 text-xs text-slate-600 leading-relaxed">
-                {stat.description}
-              </p>
-            </motion.div>
-          );
-        })}
+              <div className="rounded-xl bg-brand/10 p-2 text-brand transition group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </div>
+            </div>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{s.label}</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">{s.description}</p>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }

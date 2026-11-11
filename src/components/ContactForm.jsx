@@ -2,8 +2,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import AnimatedSection from "@/src/components/AnimatedSection";
+import Mascot from "@/src/components/Mascot";
 
 export default function ContactForm() {
   const [state, setState] = useState({
@@ -189,60 +189,33 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:gap-8 lg:grid-cols-[1.35fr,0.85fr]">
+      <div className="grid gap-6 lg:gap-8 lg:grid-cols-[1.35fr_0.85fr]">
         {/* SIDEBAR (Premium) */}
         <aside className="order-1 lg:order-2">
-          <div className="relative rounded-3xl bg-brand/95 text-slate-50 shadow-lg border border-white/10 overflow-hidden lg:sticky lg:top-24">
+          <div className="relative rounded-3xl bg-brand/95 text-slate-50 shadow-lg border border-white/10 overflow-hidden lg:sticky lg:top-28">
             {/* subtle shine */}
             <div className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
 
             <div className="relative p-5 sm:p-6 md:p-7">
-              {/* Desktop: Figur schwebt */}
-              <div className="pointer-events-none absolute -right-3 hidden lg:block">
-                <Image
-                  src="/mn/contact-support.webp"
-                  alt="MN Glanzwerk – Kontakt"
-                  width={320}
-                  height={320}
-                  className="w-28 lg:w-36 h-auto drop-shadow-2xl"
-                  priority
-                />
-              </div>
-
-              {/* Mobile: Figur inline */}
-              <div className="flex items-center gap-3 lg:hidden">
-                <Image
-                  src="/mn/contact-support.webp"
-                  alt="MN Glanzwerk – Kontakt"
-                  width={120}
-                  height={120}
-                  className="w-14 h-auto drop-shadow-md"
-                  priority
-                />
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-white/80 font-semibold">
-                    DIREKTER KONTAKT
-                  </p>
-                  <h2 className="text-base font-semibold leading-tight">
-                    Schnell & unkompliziert
-                  </h2>
-                  <p className="text-xs text-white/80 leading-snug">
-                    Anrufen oder WhatsApp – wir melden uns zeitnah.
-                  </p>
-                </div>
-              </div>
-
-              {/* Desktop headline */}
-              <div className="hidden lg:block space-y-2">
+              {/* Überschrift */}
+              <div className="space-y-2">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-white/80 font-semibold">
-                  DIREKTER KONTAKT
+                  Direkter Kontakt
                 </p>
                 <h2 className="text-xl font-semibold">Wir sind für Sie da</h2>
                 <p className="text-sm text-white/85">
                   Sie möchten lieber direkt anrufen oder per WhatsApp schreiben?
                   Kein Problem – wir sind erreichbar.
                 </p>
+              </div>
+
+              {/* Bühne: Figur tippt die Nummer und telefoniert – mit Platz für die Sprechblase */}
+              <div className="relative mt-4 flex h-48 items-end justify-end overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-white/15 via-white/5 to-sky-400/20 px-3 sm:h-56">
+                <div aria-hidden="true" className="absolute inset-0 opacity-30 [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:16px_16px]" />
+                <div className="relative mr-1 w-24 sm:mr-4 sm:w-28">
+                  <Mascot fig="phone" dark speechSide="left" alt="MN GLANZWERK Mitarbeiter wählt die Telefonnummer 0163 7885512" sizes="112px" />
+                </div>
               </div>
 
               {/* Quick Actions */}
@@ -357,14 +330,14 @@ export default function ContactForm() {
             <div className="space-y-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-2">
-                  <AnimatedSection>
+                  <AnimatedSection as="div">
                     <p className="inline-flex items-center rounded-full bg-brand/5 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand">
                       KONTAKT
                     </p>
                   </AnimatedSection>
-                  <h1 className="text-xl sm:text-2xl font-semibold text-slate-900">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-slate-900">
                     Anfrage senden
-                  </h1>
+                  </h2>
                   <p className="text-sm text-slate-600">
                     Teilen Sie uns kurz die wichtigsten Infos mit – wir melden
                     uns zeitnah zurück.
@@ -404,7 +377,7 @@ export default function ContactForm() {
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-1.5">
-                      <AnimatedSection delay={0.1}>
+                      <AnimatedSection as="div" delay={0.1}>
                         <label className="block text-sm font-medium text-slate-800">
                           Name *
                         </label>
@@ -421,7 +394,7 @@ export default function ContactForm() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <AnimatedSection delay={0.15}>
+                      <AnimatedSection as="div" delay={0.15}>
                         <label className="block text-sm font-medium text-slate-800">
                           E-Mail *
                         </label>
@@ -440,7 +413,7 @@ export default function ContactForm() {
 
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-1.5">
-                      <AnimatedSection delay={0.2}>
+                      <AnimatedSection as="div" delay={0.2}>
                         <label className="block text-sm font-medium text-slate-800">
                           Telefon / WhatsApp
                         </label>
@@ -460,7 +433,7 @@ export default function ContactForm() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <AnimatedSection delay={0.25}>
+                      <AnimatedSection as="div" delay={0.25}>
                         <label className="block text-sm font-medium text-slate-800">
                           Objektart
                         </label>

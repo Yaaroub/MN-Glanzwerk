@@ -1,27 +1,29 @@
 // src/app/contact/page.jsx
 import ContactForm from "@/src/components/ContactForm";
+import PageHero from "@/src/components/PageHero";
 
 export const metadata = {
-  title: "Kontakt | MN GLANZWERK CLEANING COMPANY",
+  title: "Kontakt & kostenloses Angebot",
   description:
-    "Kontaktieren Sie MN GLANZWERK CLEANING COMPANY für ein unverbindliches Angebot. Gebäudereinigung in Schleswig-Holstein, Hamburg & Bremen.",
+    "Jetzt kostenloses Reinigungsangebot anfordern: MN GLANZWERK, Kurhausstraße 46, 23795 Bad Segeberg. Telefon/WhatsApp 0163 7885512 – Mo–Sa 08–20 Uhr, Notdienst 24/7.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto max-w-6xl px-4 md:px-6 md:py-14">
-      <div className="mb-8 md:mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-          Kontakt
-        </h1>
-        <p className="mt-2 text-sm md:text-base text-slate-600 max-w-2xl">
-          Senden Sie uns Ihre Anfrage – wir melden uns schnell und unverbindlich
-          zurück. Bitte geben Sie die Adresse vollständig an (Straße, Hausnummer,
-          PLZ, Ort).
-        </p>
+    <>
+      <PageHero
+        path="/contact"
+        crumb="Kontakt"
+        eyebrow="Kostenlos & unverbindlich"
+        title="Ihr Angebot in 24 Stunden."
+        intro="Erzählen Sie uns kurz von Ihrem Objekt – wir melden uns schnell mit einem fairen Festpreis-Angebot. Lieber direkt sprechen? Rufen Sie an oder schreiben Sie per WhatsApp."
+        fig="point"
+        speech="Einfach ausfüllen!"
+      />
+      <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6 md:pt-14">
+        <ContactForm />
       </div>
-
-      <ContactForm />
-    </main>
+    </>
   );
 }
